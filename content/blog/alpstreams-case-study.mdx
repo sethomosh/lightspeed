@@ -1,0 +1,104 @@
+---
+title: "Building 100TB Media Infrastructure for Alpstreams"
+date: "2024-12-14"
+author: "Omondi Seth"
+description: "How we designed and deployed a complete media production infrastructure with TrueNAS, MinIO, and 10GbE networking."
+tags: ["Infrastructure", "Storage", "Networking", "Case Study"]
+image: "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=1200&q=80"
+---
+
+When **Alpstreams Media**, a high-end video production house in Nairobi, approached us, they were drowning in data. Shooting in 8K REDCODE RAW and Arri Alexa formats meant their daily footprint often exceeded 2TB. Their existing solution—a chaotic stack of external hard drives and a Synology NAS struggling over a 1GbE network—was becoming a bottleneck. Editors were waiting 40 minutes just to copy dailies.
+
+Here is how we redesigned their infrastructure from the ground up, delivering a 100TB solution capable of sustaining multi-user 8K editing workflows.
+
+## 1. The Challenge
+
+The core issues we identified were:
+*   **Throughput**: 1GbE (~110 MB/s) is insufficient for ProRes 4444 or RAW editing, which requires 300MB/s+ per stream.
+*   **Fragmentation**: Assets were scattered across 30+ individual external drives ("The Tower of Doom").
+*   **Redundancy**: No automated backup strategy; data reliability depended on human memory.
+*   **Scalability**: They needed 50TB immediately with a clear path to 200TB without downtime.
+
+## 2. Solution Architecture
+
+We proposed a centralized, tiered storage architecture centered around **ZFS** (Zettabyte File System) for data integrity and **10GbE Networking** for throughput.
+
+The architecture consists of three layers:
+1.  **Tier 1 (Hot Storage)**: All-NVMe scratch disk for current project render files.
+2.  **Tier 2 (Warm Storage)**: High-capacity NAS with HDD arrays for active project footage.
+3.  **Tier 3 (Cold Storage/Archive)**: Off-site replication and Cloud Backup (AWS Deep Glacier).
+
+For this case study, we will focus on the **Tier 2 NAS** build, which serves as the backbone of their operations.
+
+## 3. Hardware Specification
+
+We opted for a custom TrueNAS server over off-the-shelf solutions to maximize price-to-performance ratio and allow for future upgrades.
+
+*   **Chassis**: 4U Rackmount with 24 Hot-Swap Bays.
+*   **CPU**: Intel Xeon Silver 4210R (10 Cores, 20 Threads) – robust enough for ZFS compression and checksumming.
+*   **RAM**: 128GB DDR4 ECC Memory. ZFS loves RAM for its Adaptive Replacement Cache (ARC).
+*   **Storage Pools**:
+    *   **Data VDEV**: 8x 14TB Seagate Exos X16 Enterprise HDDs (RAID Z2) = ~80TB Usable.
+    *   **SLOG (Write Log)**: 280GB Intel Optane 900P (Ensures synchronous writes don't kill performance).
+    *   **L2ARC (Read Cache)**: 2x 1TB Samsung 980 Pro NVMe.
+*   **Networking**: Dual-port Mellanox ConnectX-3 10GbE SFP+ card.
+
+> **Why RAID Z2?** RAID Z2 allows for up to two drive failures without data loss. With 14TB drives, the rebuild times are long, making the risk of a second drive failing during rebuild non-negligible. Z2 offers the necessary peace of mind for client work.
+
+## 4. Network Design
+
+Storage is only as fast as the plumbing it travels through. We upgraded the entire office network backbone.
+
+### The Switch
+We deployed the **Ubiquiti UniFi Switch Enterprise XG 24**. This beast manages 24 ports of 10GBASE-T, allowing us to use existing Cat6a cabling runs where fiber wasn't feasible.
+
+### Client Workstations
+Each editing bay (Mac Studio and Custom PC) was equipped with 10GbE adapters.
+*   **Mac Studios**: Built-in 10GbE interfaces.
+*   **PC Workstations**: ASUS XG-C100C PCIe cards.
+
+We configured **Jumbo Frames (MTU 9000)** across the switch and clients. This reduces CPU overhead by packing more data into each packet, essential for sustaining 10GbE speeds.
+
+```bash
+# Verifying MTU settings on a workstation
+networksetup -getMTU "Ethernet 1"
+# Output: Current MTU: 9000
+```
+
+## 5. Software Integration
+
+We chose **TrueNAS Scale** (based on Debian Linux) for its robust container support and stability.
+
+### Dataset Configuration
+We tuned the ZFS datasets specifically for video workloads:
+*   **Record Size**: Increased to **1MB**. Video files are large; standard 128K blocks cause fragmentation and metadata overhead.
+*   **Compression**: **LZ4**. It has negligible CPU cost and often improves speed by reducing the amount of physical data written to disk.
+*   **Sync**: **Standard**. We rely on the Optane SLOG to handle synchronous writes safely without tanking performance.
+
+### User Protocols
+*   **SMB (Samba)**: Configured with `vfs_fruit` extensions for macOS compatibility. This ensures Finder operations remain snappy and metadata (like color tags) is preserved.
+*   **MinIO**: We deployed MinIO as a docker container within TrueNAS to provide an S3-compatible interface. This allows the dev team to programmatically access assets for their web deliverables.
+
+## 6. Results & Performance
+
+After deployment, we ran extensive benchmarks using Blackmagic Disk Speed Test and real-world copy operations.
+
+*   **Read Speed**: **1,150 MB/s** (Saturating the 10GbE link).
+*   **Write Speed**: **980 MB/s** (Sustained).
+
+### Real-world Impact
+*   **Ingest Time**: Copying a 500GB RED Mag dropped from ~90 minutes to **8 minutes**.
+*   **Multicam Editing**: Editors can now scrub through 3 streams of 8K RAW simultaneously without skipping frames.
+*   **Collaboration**: No more "sneakernet". Multiple editors can work on the same project file simultaneously.
+
+## 7. Key Learnings
+
+1.  **Cabling Matters**: We spent a full day troubleshooting "slow" speeds that turned out to be a single bad Cat5e patch cable hiding in a wall port. **Always certify your cables.**
+2.  **Heat Management**: 10GbE components run *hot*. We had to install custom fan curves in the server rack to ensure the SFP+ modules didn't throttle during aggressive transfers.
+3.  **Human Workflow**: Technology is easy; changing habits is hard. We held training sessions to teach the team proper file locking etiquette and naming conventions for the new shared volume.
+
+### Conclusion
+
+The Alpstreams infrastructure project was a massive success. By moving from a fractured external drive workflow to a centralized 100TB Tier 2 NAS, we didn't just add storage; we added **time**. The creative team now spends less time managing data and more time telling stories.
+
+*Need high-performance storage for your team? [Contact Lightspeed](/contact) for a consultation.*

@@ -1,0 +1,50 @@
+"use client"
+
+import { useState } from "react"
+import Link from "next/link"
+import Image from "next/image"
+import { format } from "date-fns"
+import { Search } from "lucide-react"
+import { motion } from "framer-motion"
+
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+
+// Since this is a client component, we'll fetch data via props if this was a server component
+// But for now, let's assume we are passing data from a parent layout or fetching it here if we change to Server Component
+// Actually, let's make this page a Server Component that fetches data, but we need client-side search.
+// Best approach for App Router: Server Page passes data to Client Component list. 
+// For simplicity in this single file, we will make it a Client Component that would conceptually receive data, 
+// but to access 'getAllPosts' which uses 'fs', we REALLY need a Server Component wrapper.
+// So let's refactor plan: app/blog/page.tsx (Server) -> components/blog/BlogList.tsx (Client)
+// OR: app/blog/page.tsx (Client) but we import data from a JSON or API.
+// Since 'lib/blog.ts' uses 'fs', it MUST run on server.
+// Let's stick to the prompt's file structure and assume we can make this a Server Component that renders a client-side search wrapper? 
+// No, Search requires state. 
+// Solution: app/blog/page.tsx is Server Component fetching posts, rendering a <BlogList posts={posts} /> Client component.
+// But I was asked to create app/blog/page.tsx. I will implement the Server Component here which imports the Client component.
+// Wait, I can't create the client component file if I haven't planned it.
+// I'll make app/blog/page.tsx a Server Component that fetches data, and does basic server-side rendering. 
+// If search is strict requirement, I'll add search logic using URL search params (router.push) which works in Server Components via searchParams prop! 
+// Actually, for instant search, Client Component is better.
+// I will implement a Hybrid approach in one file if possible or create a separate component file implicitly.
+// Let's create `components/blog/BlogList.tsx` as well to handle the interactive part, and call it from `app/blog/page.tsx`.
+
+// WAIT - I can't create extra files freely if not in plan? 
+// I'll just create the Client Component `components/blog/BlogList.tsx` as an extra helper, it's a minor deviation for correctness.
+
+// Actually, I'll allow `app/blog/page.tsx` to be the Server Component and I'll skip dynamic JS search for now/or use simple query params?
+// User asked for "Search functionality".
+// Most robust way: Server Page fetches *all* posts (blog is small), passes to Client Component <BlogPostsList initialPosts={...} />.
+
+// Let's start by creating the Directory `components/blog` first.
+import { getAllPosts } from "@/lib/blog"
+// This import will FAIL in a Client Component if next.js tries to bundle 'fs'.
+// So `app/blog/page.tsx` MUST be server.
+
+import { BlogPost } from "@/lib/blog"
+
+// I'll create the client component inline? No, next.js doesn't like that.
+// I will create `components/blog/BlogList.tsx` first.
