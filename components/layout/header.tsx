@@ -8,6 +8,7 @@ import { Zap, Menu, Twitter, Github, Linkedin } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { ThemeToggle } from "@/components/theme/ThemeToggle"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -110,7 +111,8 @@ export function Header() {
                     </Link>
                 </nav>
 
-                <div className="hidden md:flex items-center gap-4">
+                <div className="hidden md:flex items-center gap-3">
+                    <ThemeToggle />
                     <Button asChild size="sm" className="rounded-full">
                         <Link href="/contact">Book Consultation</Link>
                     </Button>
@@ -179,7 +181,14 @@ export function Header() {
                                     Contact
                                 </Link>
                             </nav>
-                            <div className="pt-6">
+
+                            {/* Theme Toggle in Mobile Menu */}
+                            <div className="flex items-center justify-between pt-6 border-t">
+                                <span className="text-sm font-medium text-muted-foreground">Theme</span>
+                                <ThemeToggle />
+                            </div>
+
+                            <div className="pt-4">
                                 <Button asChild className="w-full rounded-full">
                                     <Link href="/contact">Book Consultation</Link>
                                 </Button>

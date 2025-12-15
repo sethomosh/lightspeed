@@ -25,7 +25,7 @@ export default function ServicesPage() {
             </section>
 
             {/* Reuse the ServicesGrid - it's already built for this! */}
-            <ServicesGrid />
+            <ServicesGrid showHeading={false} />
 
             {/* CTA */}
             <CTASection />

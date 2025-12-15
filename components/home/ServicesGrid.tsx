@@ -1,4 +1,7 @@
+"use client"
+
 import Link from "next/link"
+import { motion } from "framer-motion"
 import {
     Network,
     Home,
@@ -53,7 +56,6 @@ import {
     Card,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
@@ -114,48 +116,83 @@ const getIcon = (name: string) => {
     return AccessIcon[name] || Activity
 }
 
-export function ServicesGrid() {
+interface ServicesGridProps {
+    showHeading?: boolean
+}
+
+export function ServicesGrid({ showHeading = true }: ServicesGridProps) {
     return (
         <section className="py-20 bg-background/50">
             <div className="container px-4 md:px-6">
-                <div className="flex flex-col items-center justify-center text-center space-y-4 mb-12">
-                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                        Our Expertise
-                    </h2>
-                    <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                        Comprehensive technology solutions designed to scale with your ambition.
-                    </p>
-                </div>
+                {showHeading && (
+                    <div className="flex flex-col items-center justify-center text-center space-y-4 mb-12">
+                        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                            Our Expertise
+                        </h2>
+                        <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                            Comprehensive technology solutions designed to scale with your ambition.
+                        </p>
+                    </div>
+                )}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {services.map((service, index) => {
                         const Icon = getIcon(service.icon)
                         return (
                             <FadeIn key={service.title} delay={index * 0.1} className="h-full">
-                                <Card
-                                    className="group relative overflow-hidden border-border/50 bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/50 h-full flex flex-col"
+                                <Link
+                                    href={`/services/${service.slug}`}
+                                    className="block h-full group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+                                    tabIndex={0}
                                 >
-                                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                                    <CardHeader>
-                                        <div className="mb-4 w-fit rounded-lg bg-primary/10 p-3 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                                            <Icon className="h-6 w-6" />
-                                        </div>
-                                        <CardTitle className="text-xl font-bold">{service.title}</CardTitle>
-                                    </CardHeader>
-                                    <CardContent className="flex-grow">
-                                        <CardDescription className="text-base text-muted-foreground">
-                                            {service.description}
-                                        </CardDescription>
-                                    </CardContent>
-                                    <CardFooter>
-                                        <Link
-                                            href={`/services/${service.slug}`}
-                                            className="inline-flex items-center text-sm font-medium text-primary transition-colors hover:text-primary/80"
+                                    <motion.div
+                                        whileHover={{ scale: 1.02, y: -8 }}
+                                        transition={{ duration: 0.3, ease: "easeOut" }}
+                                        className="h-full"
+                                    >
+                                        <Card
+                                            className="relative overflow-hidden border-border/50 bg-card transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/50 h-full flex flex-col cursor-pointer"
                                         >
-                                            {service.status === 'coming-soon' ? 'Coming Soon' : 'Learn More'}
-                                            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                                        </Link>
-                                    </CardFooter>
-                                </Card>
+                                            {/* Background gradient on hover */}
+                                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                                            {/* Blue border glow on hover */}
+                                            <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
+
+                                            {/* Top-right arrow indicator - appears on hover */}
+                                            <motion.div
+                                                initial={{ opacity: 0, x: -10 }}
+                                                whileHover={{ opacity: 1, x: 0 }}
+                                                className="absolute top-4 right-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                            >
+                                                <ArrowRight className="h-5 w-5" />
+                                            </motion.div>
+
+                                            <CardHeader className="relative">
+                                                <div className="mb-4 w-fit rounded-lg bg-primary/10 p-3 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                                                    <Icon className="h-6 w-6" />
+                                                </div>
+                                                <CardTitle className="text-xl font-bold pr-8">
+                                                    {service.title}
+                                                </CardTitle>
+                                            </CardHeader>
+
+                                            <CardContent className="flex-grow relative">
+                                                <CardDescription className="text-base text-muted-foreground">
+                                                    {service.description}
+                                                </CardDescription>
+
+                                                {/* Status indicator for coming soon */}
+                                                {service.status === 'coming-soon' && (
+                                                    <div className="mt-4">
+                                                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                                                            Coming Soon
+                                                        </span>
+                                                    </div>
+                                                )}
+                                            </CardContent>
+                                        </Card>
+                                    </motion.div>
+                                </Link>
                             </FadeIn>
                         )
                     })}

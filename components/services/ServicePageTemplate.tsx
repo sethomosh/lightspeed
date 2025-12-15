@@ -197,7 +197,7 @@ export function ServicePageTemplate({
             <section className="py-20 bg-background">
                 <div className="container px-4 md:px-6">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Key Capabilities</h2>
+                        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">What's Included</h2>
                         <p className="text-muted-foreground mt-2">Everything you need to succeed.</p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -305,7 +305,7 @@ export function ServicePageTemplate({
                 <section className="py-20 bg-background">
                     <div className="container px-4 md:px-6">
                         <div className="text-center mb-12">
-                            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Transparent Pricing</h2>
+                            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Investment</h2>
                             <p className="text-muted-foreground mt-2">Packages designed for every stage.</p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">

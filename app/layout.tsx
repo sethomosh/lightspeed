@@ -6,6 +6,7 @@ import '@/styles/globals.css'
 import { cn } from '@/lib/utils'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
+import { ThemeProvider } from '@/components/theme/ThemeProvider'
 
 // 1. Performance: Dynamic Import
 const ChatWidget = dynamic(() => import('@/components/chat/ChatWidget'), {
@@ -134,24 +135,32 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body className={cn("min-h-screen bg-background font-sans antialiased", inter.variable, jetbrainsMono.variable)}>
-                {/* 3. Accessibility: Skip Link */}
-                <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-[100] px-4 py-2 bg-primary text-primary-foreground rounded-md transition-transform">
-                    Skip to main content
-                </a>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    storageKey="lightspeed-theme"
+                    disableTransitionOnChange
+                >
+                    {/* 3. Accessibility: Skip Link */}
+                    <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-[100] px-4 py-2 bg-primary text-primary-foreground rounded-md transition-transform">
+                        Skip to main content
+                    </a>
 
-                <Header />
-                <main id="main-content" className="min-h-screen">
-                    <div className="pt-16">
-                        {children}
-                    </div>
-                </main>
-                <Footer />
-                <ChatWidget />
-                <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-                />
+                    <Header />
+                    <main id="main-content" className="min-h-screen">
+                        <div className="pt-16">
+                            {children}
+                        </div>
+                    </main>
+                    <Footer />
+                    <ChatWidget />
+                    <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
+                    <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                    />
+                </ThemeProvider>
             </body>
         </html>
     )
