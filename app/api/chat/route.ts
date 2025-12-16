@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { HfInference } from "@huggingface/inference"
 
 // Simple in-memory rate limiter
 const rateLimit = new Map<string, number[]>()
@@ -65,41 +66,62 @@ export async function POST(req: Request) {
             return new NextResponse("Invalid request body", { status: 400 })
         }
 
-        const apiKey = process.env.ANTHROPIC_API_KEY
+        const apiKey = process.env.HUGGINGFACE_API_KEY
         if (!apiKey) {
-            console.error("ANTHROPIC_API_KEY is missing")
-            return new NextResponse("Internal Server Error", { status: 500 })
+            console.error("HUGGINGFACE_API_KEY is missing")
+            return new NextResponse("Internal Server Error configuration", { status: 500 })
         }
 
-        // Call Anthropic API
-        const response = await fetch("https://api.anthropic.com/v1/messages", {
-            method: "POST",
-            headers: {
-                "x-api-key": apiKey,
-                "anthropic-version": "2023-06-01",
-                "content-type": "application/json",
-            },
-            body: JSON.stringify({
-                model: "claude-3-5-sonnet-20240620",
-                max_tokens: 1024,
-                system: SYSTEM_PROMPT,
-                messages: messages.map((m: any) => ({
-                    role: m.sender === "bot" ? "assistant" : "user",
-                    content: m.text,
-                })),
-            }),
-        })
+        const hf = new HfInference(apiKey)
 
-        if (!response.ok) {
-            const error = await response.text()
-            console.error("Anthropic API Error:", error)
-            return new NextResponse("Error calling AI provider", { status: 500 })
+        // Construct formatting for DialoGPT/Conversational models
+        // Prepend system prompt to the conversation context
+        let prompt = `System: ${SYSTEM_PROMPT}\n\n`
+
+        for (const m of messages) {
+            const role = m.sender === "bot" ? "Assistant" : "User"
+            prompt += `${role}: ${m.text}\n`
+        }
+        prompt += "Assistant:"
+
+        // Call Hugging Face API
+        // Using microsoft/DialoGPT-large as requested, though Mistral-7B might follow instructions better.
+        // Handling rate limits and errors
+        try {
+            const response = await hf.textGeneration({
+                model: 'microsoft/DialoGPT-large',
+                inputs: prompt,
+                parameters: {
+                    max_new_tokens: 200,
+                    temperature: 0.7,
+                    return_full_text: false
+                }
+            })
+
+            return NextResponse.json({ message: response.generated_text })
+
+        } catch (apiError: any) {
+            console.error("Hugging Face API Error:", apiError)
+
+            // Check for rate limit error (often 429 or 503 if loading)
+            if (apiError.message?.includes("Rate limit reached") || apiError.statusCode === 429) {
+                return NextResponse.json(
+                    { message: "I'm receiving too many messages right now. Please try again in an hour." },
+                    { status: 429 }
+                )
+            }
+
+            // Check for model loading error (503)
+            if (apiError.statusCode === 503) {
+                return NextResponse.json(
+                    { message: "I'm waking up from sleep mode. Please try again in 30 seconds." },
+                    { status: 503 }
+                )
+            }
+
+            throw apiError
         }
 
-        const data = await response.json()
-        const aiMessage = data.content[0].text
-
-        return NextResponse.json({ message: aiMessage })
     } catch (error) {
         console.error("[CHAT_ERROR]", error)
         return new NextResponse("Internal Server Error", { status: 500 })
