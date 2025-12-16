@@ -17,7 +17,7 @@ export function CTASection() {
                         Ready to Solve Your Technical Challenge?
                     </h2>
                     <p className="text-gray-300 md:text-xl/relaxed max-w-[600px]">
-                        Book a free 30-minute consultation to discuss your needs. We'll help you architect the right solution.
+                        Book a free 30-minute consultation to discuss your needs. We&apos;ll help you architect the right solution.
                     </p>
                     <div className="flex flex-col gap-4 sm:flex-row pt-4">
                         <Button

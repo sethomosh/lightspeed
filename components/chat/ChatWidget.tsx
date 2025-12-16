@@ -64,6 +64,7 @@ export default function ChatWidget() {
         }, 10000)
 
         return () => clearTimeout(timer)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []) // Run once on mount
 
     // Save messages to local storage

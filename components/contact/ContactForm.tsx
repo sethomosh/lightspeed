@@ -123,7 +123,7 @@ export function ContactForm() {
                 </motion.div>
                 <h3 className="text-2xl font-bold text-green-500">Message Sent!</h3>
                 <p className="text-muted-foreground">
-                    Thanks for reaching out! We've received your message and will respond within 24 hours.
+                    Thanks for reaching out! We&apos;ve received your message and will respond within 24 hours.
                 </p>
                 <Button variant="outline" onClick={() => setIsSuccess(false)}>
                     Send another message

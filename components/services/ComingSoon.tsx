@@ -7,7 +7,7 @@ import { ArrowLeft, Bell, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useState } from "react"
-import { toast } from "sonner" // Assuming we have sonner or basic alert
+
 
 interface ComingSoonProps {
     title: string

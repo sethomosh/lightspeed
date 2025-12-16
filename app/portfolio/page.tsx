@@ -81,7 +81,7 @@ export default function PortfolioPage() {
                         Our Work
                     </h1>
                     <p className="max-w-[700px] mx-auto text-muted-foreground md:text-xl">
-                        Explore how we've helped businesses and homes transform with technology.
+                        Explore how we&apos;ve helped businesses and homes transform with technology.
                     </p>
                 </div>
             </section>

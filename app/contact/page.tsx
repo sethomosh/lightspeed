@@ -20,7 +20,7 @@ export default function ContactPage() {
                         </h1>
                         <p className="max-w-[700px] text-muted-foreground md:text-xl">
                             Have a project in mind or need technical support?
-                            We'd love to hear from you.
+                            We&apos;d love to hear from you.
                         </p>
                     </div>
                 </div>
@@ -33,7 +33,7 @@ export default function ContactPage() {
                     {/* Left Column - Contact Info (40% roughly, using grid col span) */}
                     <div className="lg:col-span-2 space-y-8">
                         <div>
-                            <h2 className="text-3xl font-bold mb-4">Let's Talk</h2>
+                            <h2 className="text-3xl font-bold mb-4">Let&apos;s Talk</h2>
                             <p className="text-muted-foreground mb-8">
                                 Fill out the form or use one of the contact methods below.
                                 We typically respond within 24 hours.

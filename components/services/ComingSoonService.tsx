@@ -67,7 +67,7 @@ export function ComingSoonService() {
                                 <span className="text-primary">Coming Soon</span>
                             </h1>
                             <p className="text-xl text-muted-foreground max-w-[600px]">
-                                We're preparing comprehensive security solutions to protect your digital assets and ensure compliance
+                                We&apos;re preparing comprehensive security solutions to protect your digital assets and ensure compliance
                             </p>
                         </motion.div>
                     </div>
@@ -83,7 +83,7 @@ export function ComingSoonService() {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.3 }}
                         >
-                            <h2 className="text-2xl font-bold text-center mb-8">What's Included</h2>
+                            <h2 className="text-2xl font-bold text-center mb-8">What&apos;s Included</h2>
                             <div className="grid gap-4">
                                 {features.map((feature, index) => (
                                     <motion.div
@@ -129,7 +129,7 @@ export function ComingSoonService() {
                             >
                                 <div className="flex items-center justify-center gap-2 text-green-600 dark:text-green-400">
                                     <Check className="w-5 h-5" />
-                                    <span className="font-medium">Thanks! We'll notify you when we launch.</span>
+                                    <span className="font-medium">Thanks! We&apos;ll notify you when we launch.</span>
                                 </div>
                             </motion.div>
                         ) : (
