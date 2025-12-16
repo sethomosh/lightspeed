@@ -2,8 +2,7 @@ import { NextResponse } from "next/server"
 import { z } from "zod"
 import { Resend } from "resend"
 
-// Initialize Resend
-const resend = new Resend(process.env.RESEND_API_KEY)
+
 
 // Simple in-memory rate limiter (3 req/hour)
 const rateLimit = new Map<string, { count: number; expiresAt: number }>()
@@ -63,7 +62,6 @@ export async function POST(req: Request) {
 
         const { name, email, phone, service, message } = result.data
 
-        // --- 3. Send Email via Resend ---
         if (!process.env.RESEND_API_KEY) {
             console.error("Missing RESEND_API_KEY")
             return NextResponse.json(
@@ -71,6 +69,8 @@ export async function POST(req: Request) {
                 { status: 500 }
             )
         }
+
+        const resend = new Resend(process.env.RESEND_API_KEY)
 
         const emailContent = `
             <!DOCTYPE html>
