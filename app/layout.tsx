@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+// import { Inter, JetBrains_Mono } from 'next/font/google'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import '@/styles/globals.css'
@@ -7,15 +7,18 @@ import { cn } from '@/lib/utils'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { ThemeProvider } from '@/components/theme/ThemeProvider'
+import { Snowfall } from '@/components/effects/Snowfall'
+import WhatsAppFloat from '@/components/ui/WhatsAppFloat'
 
 // 1. Performance: Dynamic Import
-const ChatWidget = dynamic(() => import('@/components/chat/ChatWidget'), {
-    ssr: false,
-})
+// ChatWidget removed - replaced with WhatsApp button
+// const ChatWidget = dynamic(() => import('@/components/chat/ChatWidget'), {
+//     ssr: false,
+// })
 
-// 2. Performance: Font Swap
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans', display: 'swap' })
-const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' })
+// 2. Performance: Font Swap - Disabled to prevent build timeouts
+// const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
+// const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' })
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://lightspeed.tech'),
@@ -134,7 +137,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={cn("min-h-screen bg-background font-sans antialiased", inter.variable, jetbrainsMono.variable)}>
+            <body className={cn("min-h-screen bg-background font-sans antialiased")}>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"
@@ -148,13 +151,15 @@ export default function RootLayout({
                     </a>
 
                     <Header />
+                    <Snowfall />
                     <main id="main-content" className="min-h-screen">
                         <div className="pt-16">
                             {children}
                         </div>
                     </main>
                     <Footer />
-                    <ChatWidget />
+                    <WhatsAppFloat />
+                    {/* <ChatWidget /> */}
                     <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
                     <script
                         type="application/ld+json"

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Mail, MapPin, Phone, Github, Linkedin, Twitter, ExternalLink } from 'lucide-react'
+import { Mail, MapPin, Phone, Github, Linkedin, Twitter, ExternalLink, MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ContactForm } from '@/components/contact/ContactForm'
 
@@ -65,6 +65,27 @@ export default function ContactPage() {
                                     <p className="font-medium">Call Us</p>
                                     <p className="text-sm text-muted-foreground">+254 750 285 341</p>
                                     <p className="text-sm text-muted-foreground">+254 115 217 699</p>
+                                </div>
+                            </a>
+
+                            <a
+                                href="https://wa.me/254115217699?text=Hi!%20I%27m%20interested%20in%20Lightspeed%20services.%20I%27d%20like%20to%20discuss:"
+                                className="flex items-center gap-4 p-4 rounded-xl border bg-card hover:bg-muted/50 transition-colors group"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <div className="h-12 w-12 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform" style={{ backgroundColor: '#25D3661a' }}>
+                                    <MessageCircle className="h-6 w-6" style={{ color: '#25D366' }} />
+                                </div>
+                                <div>
+                                    <p className="font-medium">Prefer WhatsApp?</p>
+                                    <p className="text-sm text-muted-foreground">Chat with us instantly</p>
+                                    <div className="pt-2">
+                                        <Button variant="outline" size="sm" className="gap-2 border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white">
+                                            Open WhatsApp
+                                            <ExternalLink className="h-4 w-4" />
+                                        </Button>
+                                    </div>
                                 </div>
                             </a>
 

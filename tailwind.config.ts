@@ -19,8 +19,8 @@ const config = {
 		},
 		extend: {
 			fontFamily: {
-				sans: ["var(--font-sans)"],
-				mono: ["var(--font-mono)"],
+				sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],
+				mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

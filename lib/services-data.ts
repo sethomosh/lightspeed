@@ -21,6 +21,8 @@ export interface ServiceData {
         professional: { price: string; features: string[] }
         enterprise: { price: string; features: string[] }
     }
+    heroImage: string
+    imagePosition?: string // e.g., "center", "top", "bottom", "left", "right", "center 75%"
     caseStudy?: {
         title: string
         description: string
@@ -85,6 +87,7 @@ export const services: ServiceData[] = [
             { step: 7, title: "Ongoing support", description: "Available maintenance and troubleshooting." }
         ],
         technologies: ["Ubiquiti UniFi", "Cisco", "MikroTik", "pfSense", "TP-Link Omada"],
+        heroImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=1920", // Server room
     },
     {
         slug: "smart-home-automation",
@@ -116,7 +119,9 @@ export const services: ServiceData[] = [
             { step: 6, title: "User training" },
             { step: 7, title: "Ongoing optimization" }
         ],
-        technologies: ["Home Assistant", "Philips Hue", "Sonos", "Ubiquiti Protect", "Synology NAS", "Plex"]
+        technologies: ["Home Assistant", "Philips Hue", "Sonos", "Ubiquiti Protect", "Synology NAS", "Plex"],
+        heroImage: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=1920", // Smart home
+        imagePosition: "center", // Resetting to center with taller hero section
     },
     {
         slug: "security-systems",
@@ -149,7 +154,8 @@ export const services: ServiceData[] = [
             { step: 6, title: "User training" },
             { step: 7, title: "Maintenance support" }
         ],
-        technologies: ["Hikvision", "Dahua", "Ubiquiti Protect", "Ajax Security", "ZKTeco"]
+        technologies: ["Hikvision", "Dahua", "Ubiquiti Protect", "Ajax Security", "ZKTeco"],
+        heroImage: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&q=80&w=1920", // Security camera
     },
     {
         slug: "devops-consulting",
@@ -182,7 +188,8 @@ export const services: ServiceData[] = [
             { step: 5, title: "Team training" },
             { step: 6, title: "Ongoing optimization" }
         ],
-        technologies: ["Kubernetes", "Docker", "Terraform", "GitHub Actions", "AWS", "Azure", "Prometheus", "Grafana"]
+        technologies: ["Kubernetes", "Docker", "Terraform", "GitHub Actions", "AWS", "Azure", "Prometheus", "Grafana"],
+        heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1920", // Data center
     },
     {
         slug: "business-solutions",
@@ -214,7 +221,8 @@ export const services: ServiceData[] = [
             { step: 5, title: "Deployment and training" },
             { step: 6, title: "Ongoing support and iteration" }
         ],
-        technologies: ["Next.js", "React", "Node.js", "Python", "PostgreSQL", "MongoDB", "AWS", "Vercel"]
+        technologies: ["Next.js", "React", "Node.js", "Python", "PostgreSQL", "MongoDB", "AWS", "Vercel"],
+        heroImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1920", // Business tech
     },
     {
         slug: "computer-solutions",
@@ -248,7 +256,8 @@ export const services: ServiceData[] = [
             { step: 6, title: "Software configuration" },
             { step: 7, title: "Training and documentation" }
         ],
-        technologies: ["TrueNAS", "Windows Server", "Ubuntu Server", "Synology", "RAID configurations", "Enterprise hardware"]
+        technologies: ["TrueNAS", "Windows Server", "Ubuntu Server", "Synology", "RAID configurations", "Enterprise hardware"],
+        heroImage: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&q=80&w=1920", // Computer hardware
     },
     {
         slug: "cybersecurity",
@@ -259,6 +268,7 @@ export const services: ServiceData[] = [
         subServices: [],
         features: [],
         process: [],
-        technologies: []
+        technologies: [],
+        heroImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1920", // Cyber lock
     }
 ]

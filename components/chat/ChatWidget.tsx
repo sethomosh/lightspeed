@@ -103,11 +103,17 @@ export default function ChatWidget() {
                 body: JSON.stringify({ messages: updatedMessages }),
             })
 
+            const data = await response.json()
+
             if (!response.ok) {
-                throw new Error("Failed to fetch response")
+                // Use the error message from the API if available
+                const errorMessage = data.message || "Failed to fetch response"
+                throw new Error(errorMessage)
             }
 
-            const data = await response.json()
+            if (!data.message) {
+                throw new Error("Invalid response format")
+            }
 
             const botResponse: Message = {
                 id: (Date.now() + 1).toString(),
@@ -116,11 +122,16 @@ export default function ChatWidget() {
                 timestamp: new Date(),
             }
             setMessages((prev) => [...prev, botResponse])
-        } catch (error) {
+        } catch (error: any) {
             console.error("Chat error:", error)
+            
+            // Extract error message if available
+            const errorMessage = error?.message || 
+                "Sorry, I'm having trouble connecting right now. Please try again later or email us at hello@lightspeed.tech."
+            
             const errorResponse: Message = {
                 id: (Date.now() + 1).toString(),
-                text: "Sorry, I'm having trouble connecting right now. Please try again later or email us at hello@lightspeed.tech.",
+                text: errorMessage,
                 sender: "bot",
                 timestamp: new Date(),
             }

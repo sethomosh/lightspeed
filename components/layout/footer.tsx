@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Zap, Github, Twitter, Linkedin } from "lucide-react"
+import { Zap, Github, Twitter, Linkedin, MessageCircle } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { services as servicesData } from "@/lib/services-data"
@@ -72,6 +72,16 @@ export function Footer() {
                                 <span className="block text-muted-foreground mt-1">
                                     <a href="tel:+254115217699" className="hover:text-primary transition-colors">+254 115 217 699</a>
                                 </span>
+                            </p>
+                            <p className="flex items-center gap-2">
+                                <span className="block font-medium text-foreground">WhatsApp</span>
+                                <a
+                                    href="https://wa.me/254115217699?text=Hi!%20I%27m%20interested%20in%20Lightspeed%20services.%20I%27d%20like%20to%20discuss:"
+                                    className="inline-flex items-center gap-2 text-sm hover:text-primary transition-colors"
+                                >
+                                    <MessageCircle className="h-4 w-4" style={{ color: '#25D366' }} />
+                                    <span>0115 217 699</span>
+                                </a>
                             </p>
                             <p>
                                 <span className="block font-medium text-foreground">Office</span>

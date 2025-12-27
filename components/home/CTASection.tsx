@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function CTASection() {
@@ -28,6 +28,17 @@ export function CTASection() {
                             <Link href="/contact">
                                 Book Free Consultation
                                 <ArrowRight className="ml-2 h-5 w-5" />
+                            </Link>
+                        </Button>
+                        <Button
+                            asChild
+                            size="lg"
+                            variant="outline"
+                            className="text-lg px-8 py-6 rounded-full border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white hover:border-[#25D366] shadow-lg hover:shadow-[#25D366]/25 transition-all"
+                        >
+                            <Link href="https://wa.me/254115217699?text=Hi!%20I%27m%20interested%20in%20Lightspeed%20services.%20I%27d%20like%20to%20discuss:" target="_blank" rel="noopener noreferrer">
+                                WhatsApp Us
+                                <MessageCircle className="ml-2 h-5 w-5" />
                             </Link>
                         </Button>
                     </div>
