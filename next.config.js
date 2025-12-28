@@ -29,7 +29,7 @@ const nextConfig = {
                     },
                     {
                         key: 'Content-Security-Policy',
-                        value: "default-src 'self'; img-src 'self' https://images.unsplash.com https://assets.calendly.com https://cdn.simpleicons.org data:; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://assets.calendly.com; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self' https://api.anthropic.com;",
+                        value: "default-src 'self'; img-src 'self' https://images.unsplash.com https://assets.calendly.com https://cdn.simpleicons.org data:; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://assets.calendly.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.anthropic.com;",
                     },
                 ],
             },
