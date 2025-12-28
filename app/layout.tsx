@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-// import { Inter, JetBrains_Mono } from 'next/font/google'
+// import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import '@/styles/globals.css'
@@ -16,8 +16,9 @@ import WhatsAppFloat from '@/components/ui/WhatsAppFloat'
 //     ssr: false,
 // })
 
-// 2. Performance: Font Swap - Disabled to prevent build timeouts
-// const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
+// 2. Performance: Font Swap - API Import
+// Using CSS import in globals.css to bypass build timeouts
+// const inter = Inter({ subsets: ['latin'] })
 // const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' })
 
 export const metadata: Metadata = {
