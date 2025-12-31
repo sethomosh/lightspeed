@@ -18,8 +18,8 @@ export function generateStaticParams() {
     }))
 }
 
-// Generate metadata for each service page
-export function generateMetadata({ params }: PageProps): Metadata {
+// Generate metadata for each service page with SEO optimization
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const service = services.find((s) => s.slug === params.slug)
 
     if (!service) {
@@ -28,23 +28,59 @@ export function generateMetadata({ params }: PageProps): Metadata {
         }
     }
 
-    return {
-        title: `${service.title} | Lightspeed Infrastructure`,
-        description: service.description,
-        openGraph: {
-            title: `${service.title} | Lightspeed Infrastructure`,
-            description: service.description,
-            type: 'website',
-            url: `https://lightspeed.tech/services/${service.slug}`,
-            images: [
-                {
-                    url: `https://lightspeed.tech/api/og?title=${encodeURIComponent(service.title)}`, // Fallback or dynamic OG
-                    width: 1200,
-                    height: 630,
-                    alt: service.title,
-                }
-            ],
+    // SEO-optimized titles and descriptions per service
+    const seoData: Record<string, { title: string; description: string; keywords: string }> = {
+        'network-solutions': {
+            title: 'Network Installation & WiFi Solutions in Busia | Lightspeed',
+            description: 'Professional network infrastructure services in Busia County. WiFi installation, network optimization, enterprise networking, and connectivity solutions. Free consultation.',
+            keywords: 'network installation Busia, WiFi setup Kenya, enterprise networking, internet connectivity, network optimization'
+        },
+        'smart-home-automation': {
+            title: 'Smart Home Automation Services in Kenya | Lightspeed',
+            description: 'Transform your home with smart automation. Lighting, climate control, security integration, and home servers. Serving Busia and Western Kenya.',
+            keywords: 'smart home Kenya, home automation Busia, smart lighting, home assistant, automated home'
+        },
+        'security-systems': {
+            title: 'CCTV & Security System Installation Busia | Lightspeed',
+            description: 'Professional security systems installation. CCTV cameras, alarm systems, access control. Protect your home or business in Busia County.',
+            keywords: 'CCTV installation Busia, security cameras Kenya, alarm systems, access control, surveillance'
+        },
+        'devops-consulting': {
+            title: 'DevOps Consulting Services Kenya | Cloud Infrastructure | Lightspeed',
+            description: 'Professional DevOps consulting for startups and businesses. Infrastructure automation, CI/CD pipelines, Kubernetes, Docker. Remote services available.',
+            keywords: 'DevOps consultant Kenya, cloud infrastructure, Kubernetes, Docker, CI/CD'
+        },
+        'business-solutions': {
+            title: 'Custom Web Development & CTO Services Kenya | Lightspeed',
+            description: 'Professional web application development and startup CTO services. Custom software solutions for businesses in Kenya. Free consultation.',
+            keywords: 'web development Kenya, custom software, CTO services, business automation'
+        },
+        'computer-solutions': {
+            title: 'Server Setup & Computer Services Busia | NAS Solutions | Lightspeed',
+            description: 'Professional computer and server services. Workstation setup, NAS solutions, server building, IT support in Busia County and Western Kenya.',
+            keywords: 'server setup Busia, NAS solutions Kenya, computer services, workstation setup, IT support'
         }
+    }
+
+    const seo = seoData[params.slug] || {
+        title: `${service.title} | Lightspeed`,
+        description: service.description,
+        keywords: ''
+    }
+
+    return {
+        title: seo.title,
+        description: seo.description,
+        keywords: seo.keywords,
+        openGraph: {
+            title: seo.title,
+            description: seo.description,
+            url: `https://lightspeednet.vercel.app/services/${params.slug}`,
+            type: 'website',
+        },
+        alternates: {
+            canonical: `https://lightspeednet.vercel.app/services/${params.slug}`,
+        },
     }
 }
 
