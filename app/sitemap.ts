@@ -1,9 +1,8 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://lightspeednet.vercel.app' // Update to your domain
+    const baseUrl = 'https://lightspeednet.vercel.app'
 
-    // Static pages
     const routes = [
         '',
         '/about',
@@ -17,7 +16,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: route === '' ? 1 : 0.8,
     }))
 
-    // Service pages
     const services = [
         'network-solutions',
         'smart-home-automation',
@@ -34,3 +32,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     return [...routes, ...services]
 }
+
+// Next.js automatically sets correct headers for sitemap route
+// But if still having issues, we can create a custom route instead
