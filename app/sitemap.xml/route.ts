@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
     const baseUrl = 'https://lightspeednet.vercel.app'
 
@@ -23,36 +25,35 @@ export async function GET() {
     ]
 
     // Build XML sitemap
-    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${routes
-            .map(
-                (route) => `  <url>
+    // Use explicit concatenation to ensure XML declaration is first
+    const xmlHeader = '<?xml version="1.0" encoding="UTF-8"?>'
+    const urlsetStart = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+    const urlsetEnd = '</urlset>'
+
+    const routesXml = routes.map(route => `
+  <url>
     <loc>${baseUrl}${route.url}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${route.changefreq}</changefreq>
     <priority>${route.priority}</priority>
-  </url>`
-            )
-            .join('\n')}
-${services
-            .map(
-                (service) => `  <url>
+  </url>`).join('')
+
+    const servicesXml = services.map(service => `
+  <url>
     <loc>${baseUrl}/services/${service}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-  </url>`
-            )
-            .join('\n')}
-</urlset>`;
+  </url>`).join('')
 
-    return new Response(sitemap.trim(), {
+    const sitemap = xmlHeader + '\n' + urlsetStart + routesXml + servicesXml + '\n' + urlsetEnd
+
+    return new Response(sitemap, {
         status: 200,
         headers: {
             'Content-Type': 'application/xml; charset=utf-8',
             'X-Content-Type-Options': 'nosniff',
             'Cache-Control': 'public, max-age=3600, s-maxage=3600',
         },
-    });
+    })
 }
