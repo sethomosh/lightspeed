@@ -42,7 +42,7 @@ export default function ContactPage() {
 
                         <div className="space-y-6">
                             <a
-                                href="mailto:omoshofcourse@gmail.com"
+                                href="mailto:lightspeedtechnologies@gmail.com"
                                 className="flex items-center gap-4 p-4 rounded-xl border bg-card hover:bg-muted/50 transition-colors group"
                             >
                                 <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -50,7 +50,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <p className="font-medium">Email Us</p>
-                                    <p className="text-sm text-muted-foreground">omoshofcourse@gmail.com</p>
+                                    <p className="text-sm text-muted-foreground">lightspeedtechnologies@gmail.com</p>
                                 </div>
                             </a>
 

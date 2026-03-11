@@ -124,7 +124,7 @@ export async function POST(req: Request) {
 
         const data = await resend.emails.send({
             from: "Lightspeed Contact <onboarding@resend.dev>", // Or your verified domain
-            to: ["omoshofcourse@gmail.com"],
+            to: ["lightspeedtechnologies@gmail.com"],
             subject: `New Contact Form: ${service}`,
             html: emailContent,
             replyTo: email, // Allow direct reply

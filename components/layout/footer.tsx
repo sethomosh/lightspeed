@@ -64,7 +64,7 @@ export function Footer() {
                         <div className="flex flex-col gap-2 text-sm text-muted-foreground">
                             <p>
                                 <span className="block font-medium text-foreground">Email</span>
-                                <a href="mailto:omoshofcourse@gmail.com" className="hover:text-primary transition-colors">omoshofcourse@gmail.com</a>
+                                <a href="mailto:lightspeedtechnologies@gmail.com" className="hover:text-primary transition-colors">lightspeedtechnologies@gmail.com</a>
                             </p>
                             <p>
                                 <span className="block font-medium text-foreground">Phone</span>

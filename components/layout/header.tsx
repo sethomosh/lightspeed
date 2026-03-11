@@ -25,11 +25,10 @@ const services = servicesData.map(s => ({
     isComingSoon: s.status === 'coming-soon'
 }))
 
-const STORAGE_KEY = 'lightspeed-snowfall'
+
 
 export function Header() {
     const [isScrolled, setIsScrolled] = React.useState(false)
-    const [snowfallEnabled, setSnowfallEnabled] = React.useState<boolean | null>(null)
     const pathname = usePathname()
 
     React.useEffect(() => {
@@ -40,37 +39,6 @@ export function Header() {
         return () => window.removeEventListener("scroll", handleScroll)
     }, [])
 
-    // Load snowfall preference
-    React.useEffect(() => {
-        const savedPreference = localStorage.getItem(STORAGE_KEY)
-        if (savedPreference === null) {
-            setSnowfallEnabled(true) // Default: ON
-        } else {
-            setSnowfallEnabled(savedPreference === 'true')
-        }
-    }, [])
-
-    // Listen for storage changes
-    React.useEffect(() => {
-        const handleStorageChange = () => {
-            const savedPreference = localStorage.getItem(STORAGE_KEY)
-            setSnowfallEnabled(savedPreference === 'true')
-        }
-        window.addEventListener('storage', handleStorageChange)
-        window.addEventListener('snowfall-toggle', handleStorageChange)
-        return () => {
-            window.removeEventListener('storage', handleStorageChange)
-            window.removeEventListener('snowfall-toggle', handleStorageChange)
-        }
-    }, [])
-
-    const toggleSnowfall = () => {
-        const newValue = !snowfallEnabled
-        setSnowfallEnabled(newValue)
-        localStorage.setItem(STORAGE_KEY, String(newValue))
-        // Dispatch custom event for same-tab updates
-        window.dispatchEvent(new Event('snowfall-toggle'))
-    }
 
     return (
         <header
@@ -147,19 +115,6 @@ export function Header() {
                 </nav>
 
                 <div className="hidden md:flex items-center gap-3">
-                    {snowfallEnabled !== null && (
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={toggleSnowfall}
-                            className="h-9 w-9"
-                            aria-label={snowfallEnabled ? "Disable snowfall" : "Enable snowfall"}
-                            title={snowfallEnabled ? "Disable snowfall" : "Enable snowfall"}
-                        >
-                            <span className="text-lg">{snowfallEnabled ? "❄️" : "🌨️"}</span>
-                        </Button>
-                    )}
-
                     <ThemeToggle />
                     <Button asChild size="sm" className="rounded-full">
                         <Link href="/contact">Book Consultation</Link>
@@ -236,21 +191,6 @@ export function Header() {
                                 <ThemeToggle />
                             </div>
 
-                            {/* Snowfall Toggle in Mobile Menu */}
-                            {snowfallEnabled !== null && (
-                                <div className="flex items-center justify-between pt-4 border-t">
-                                    <span className="text-sm font-medium text-muted-foreground">Snowfall</span>
-                                    <Button
-                                        variant="ghost"
-                                        size="sm"
-                                        onClick={toggleSnowfall}
-                                        className="h-8"
-                                        aria-label={snowfallEnabled ? "Disable snowfall" : "Enable snowfall"}
-                                    >
-                                        <span className="text-base">{snowfallEnabled ? "❄️" : "🌨️"}</span>
-                                    </Button>
-                                </div>
-                            )}
 
                             <div className="pt-4">
                                 <Button asChild className="w-full rounded-full">

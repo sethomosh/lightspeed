@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { ThemeProvider } from '@/components/theme/ThemeProvider'
-import { Snowfall } from '@/components/effects/Snowfall'
 import WhatsAppFloat from '@/components/ui/WhatsAppFloat'
 
 // 1. Performance: Dynamic Import
@@ -155,7 +154,6 @@ export default function RootLayout({
                     </a>
 
                     <Header />
-                    <Snowfall />
                     <main id="main-content" className="min-h-screen">
                         <div className="pt-16">
                             {children}
