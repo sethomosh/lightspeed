@@ -16,7 +16,7 @@ const benefits = [
     },
     {
         title: "Local Expert",
-        description: "Based in Nairobi. We provide on-site support when needed and reliable remote assistance always available.",
+        description: "Based in Kenya. We provide on-site support when needed and reliable remote assistance always available.",
         icon: MapPin,
     },
     {

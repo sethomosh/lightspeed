@@ -6,13 +6,13 @@ import { WhyChooseSection } from "@/components/home/WhyChooseSection"
 import { CTASection } from "@/components/home/CTASection"
 
 export const metadata: Metadata = {
-    title: 'Lightspeed | Network Solutions, Smart Home & IT Services in Busia, Kenya',
-    description: 'Professional infrastructure solutions in Busia County. We offer network installation, smart home automation, security systems, DevOps consulting, and computer services. Free consultation available.',
-    keywords: 'network solutions Busia, IT services Kenya, smart home automation, CCTV installation, computer services, WiFi installation Busia, security systems Kenya',
+    title: 'Lightspeed | Network Solutions, Smart Home & IT Services in Kenya',
+    description: 'Professional infrastructure solutions. We offer network installation, smart home automation, security systems, DevOps consulting, and computer services. Free consultation available.',
+    keywords: 'network solutions Kenya, IT services Kenya, smart home automation, CCTV installation, computer services, WiFi installation Kenya, security systems Kenya',
     authors: [{ name: 'Lightspeed' }],
     openGraph: {
-        title: 'Lightspeed | Infrastructure Solutions in Busia, Kenya',
-        description: 'Professional network, smart home, and IT services across Busia County and Western Kenya.',
+        title: 'Lightspeed | Infrastructure Solutions in Kenya',
+        description: 'Professional network, smart home, and IT services across Kenya.',
         url: 'https://lightspeednet.vercel.app',
         siteName: 'Lightspeed',
         locale: 'en_KE',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     twitter: {
         card: 'summary_large_image',
         title: 'Lightspeed | Infrastructure Solutions',
-        description: 'Professional network and IT services in Busia, Kenya',
+        description: 'Professional network and IT services in Kenya',
     },
     alternates: {
         canonical: 'https://lightspeednet.vercel.app',

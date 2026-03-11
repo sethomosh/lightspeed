@@ -83,10 +83,7 @@ export function Footer() {
                                     <span>0115 217 699</span>
                                 </a>
                             </p>
-                            <p>
-                                <span className="block font-medium text-foreground">Office</span>
-                                Busia, Busia County, Kenya
-                            </p>
+
                         </div>
                     </div>
                 </div>

@@ -31,19 +31,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     // SEO-optimized titles and descriptions per service
     const seoData: Record<string, { title: string; description: string; keywords: string }> = {
         'network-solutions': {
-            title: 'Network Installation & WiFi Solutions in Busia | Lightspeed',
-            description: 'Professional network infrastructure services in Busia County. WiFi installation, network optimization, enterprise networking, and connectivity solutions. Free consultation.',
-            keywords: 'network installation Busia, WiFi setup Kenya, enterprise networking, internet connectivity, network optimization'
+            title: 'Network Installation & WiFi Solutions in Kenya | Lightspeed',
+            description: 'Professional network infrastructure services. WiFi installation, network optimization, enterprise networking, and connectivity solutions. Free consultation.',
+            keywords: 'network installation Kenya, WiFi setup Kenya, enterprise networking, internet connectivity, network optimization'
         },
         'smart-home-automation': {
             title: 'Smart Home Automation Services in Kenya | Lightspeed',
-            description: 'Transform your home with smart automation. Lighting, climate control, security integration, and home servers. Serving Busia and Western Kenya.',
-            keywords: 'smart home Kenya, home automation Busia, smart lighting, home assistant, automated home'
+            description: 'Transform your home with smart automation. Lighting, climate control, security integration, and home servers. Serving clients across Kenya.',
+            keywords: 'smart home Kenya, home automation Kenya, smart lighting, home assistant, automated home'
         },
         'security-systems': {
-            title: 'CCTV & Security System Installation Busia | Lightspeed',
-            description: 'Professional security systems installation. CCTV cameras, alarm systems, access control. Protect your home or business in Busia County.',
-            keywords: 'CCTV installation Busia, security cameras Kenya, alarm systems, access control, surveillance'
+            title: 'CCTV & Security System Installation Kenya | Lightspeed',
+            description: 'Professional security systems installation. CCTV cameras, alarm systems, access control. Protect your home or business.',
+            keywords: 'CCTV installation Kenya, security cameras Kenya, alarm systems, access control, surveillance'
         },
         'devops-consulting': {
             title: 'DevOps Consulting Services Kenya | Cloud Infrastructure | Lightspeed',
@@ -56,9 +56,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             keywords: 'web development Kenya, custom software, CTO services, business automation'
         },
         'computer-solutions': {
-            title: 'Server Setup & Computer Services Busia | NAS Solutions | Lightspeed',
-            description: 'Professional computer and server services. Workstation setup, NAS solutions, server building, IT support in Busia County and Western Kenya.',
-            keywords: 'server setup Busia, NAS solutions Kenya, computer services, workstation setup, IT support'
+            title: 'Server Setup & Computer Services Kenya | NAS Solutions | Lightspeed',
+            description: 'Professional computer and server services. Workstation setup, NAS solutions, server building, IT support across Kenya.',
+            keywords: 'server setup Kenya, NAS solutions Kenya, computer services, workstation setup, IT support'
         }
     }
 

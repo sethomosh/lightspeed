@@ -89,15 +89,7 @@ export default function ContactPage() {
                                 </div>
                             </a>
 
-                            <div className="flex items-center gap-4 p-4 rounded-xl border bg-card/50">
-                                <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
-                                    <MapPin className="h-6 w-6 text-primary" />
-                                </div>
-                                <div>
-                                    <p className="font-medium">Visit Us</p>
-                                    <p className="text-sm text-muted-foreground">Busia, Busia County, Kenya</p>
-                                </div>
-                            </div>
+
                         </div>
 
                         <div className="pt-8 border-t">

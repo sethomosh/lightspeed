@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         template: '%s | Lightspeed'
     },
     description: 'Complete technical infrastructure solutions in Kenya. Network design, smart home automation, security systems, and business IT consulting services.',
-    keywords: ['infrastructure kenya', 'network installation nairobi', 'smart home automation kenya', 'IT consultant nairobi', 'security systems kenya', 'lightspeed'],
+    keywords: ['infrastructure kenya', 'network installation kenya', 'smart home automation kenya', 'IT consultant kenya', 'security systems kenya', 'lightspeed'],
     authors: [{ name: 'Lightspeed' }],
     creator: 'Lightspeed',
     publisher: 'Lightspeed',
@@ -90,10 +90,6 @@ const jsonLd = {
     telephone: '+254700000000',
     address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Westlands',
-        addressLocality: 'Nairobi',
-        addressRegion: 'Nairobi',
-        postalCode: '00100',
         addressCountry: 'KE'
     },
     geo: {
@@ -119,8 +115,8 @@ const jsonLd = {
         'https://www.linkedin.com/company/lightspeed'
     ],
     areaServed: {
-        '@type': 'City',
-        name: 'Nairobi'
+        '@type': 'Country',
+        name: 'Kenya'
     }
 }
 

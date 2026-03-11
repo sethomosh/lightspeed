@@ -7,7 +7,7 @@ A highly performant, accessible, and modern website built for Lightspeed Technic
 
 ## Overview
 
-This project serves as the primary digital presence for Lightspeed, a Nairobi-based technical services company. It is designed to showcase services, portfolios, and facilitate client communication through modern web technologies.
+This project serves as the primary digital presence for Lightspeed, a Kenya-based technical services company. It is designed to showcase services, portfolios, and facilitate client communication through modern web technologies.
 
 ## Tech Stack
 
@@ -143,6 +143,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contact
 
 **Lightspeed Technical Services**  
-Nairobi, Kenya  
+Kenya  
 Email: hello@lightspeed.tech  
 Phone: +254 700 000 000
