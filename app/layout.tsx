@@ -4,10 +4,28 @@ import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import '@/styles/globals.css'
 import { cn } from '@/lib/utils'
-import { Header } from '@/components/layout/header'
+import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/footer'
 import { ThemeProvider } from '@/components/theme/ThemeProvider'
 import WhatsAppFloat from '@/components/ui/WhatsAppFloat'
+import { ScrollProgress } from '@/components/ui/ScrollProgress'
+import { Urbanist, Plus_Jakarta_Sans } from 'next/font/google'
+
+// TODO: Replace Urbanist with ALT Gumbo (next/font/local) once Seth
+// purchases the license from alt-tf.com and places .woff2 files in /public/fonts/
+const displayFont = Urbanist({
+    subsets: ['latin'],
+    weight: ['300', '400', '500', '600', '700', '800'],
+    variable: '--font-display',
+    display: 'swap',
+})
+
+const bodyFont = Plus_Jakarta_Sans({
+    subsets: ['latin'],
+    weight: ['300', '400', '500', '600'],
+    variable: '--font-body',
+    display: 'swap',
+})
 
 // 1. Performance: Dynamic Import
 // ChatWidget removed - replaced with WhatsApp button
@@ -21,16 +39,16 @@ import WhatsAppFloat from '@/components/ui/WhatsAppFloat'
 // const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' })
 
 export const metadata: Metadata = {
-    metadataBase: new URL('https://lightspeed.tech'),
+    metadataBase: new URL('https://stratum.tech'),
     title: {
-        default: 'Lightspeed | Infrastructure Solutions Kenya',
-        template: '%s | Lightspeed'
+        default: 'Stratum Systems | Infrastructure Solutions Kenya',
+        template: '%s | Stratum Systems'
     },
     description: 'Complete technical infrastructure solutions in Kenya. Network design, smart home automation, security systems, and business IT consulting services.',
-    keywords: ['infrastructure kenya', 'network installation kenya', 'smart home automation kenya', 'IT consultant kenya', 'security systems kenya', 'lightspeed'],
-    authors: [{ name: 'Lightspeed' }],
-    creator: 'Lightspeed',
-    publisher: 'Lightspeed',
+    keywords: ['infrastructure kenya', 'network installation kenya', 'smart home automation kenya', 'IT consultant kenya', 'security systems kenya', 'stratum systems'],
+    authors: [{ name: 'Stratum Systems' }],
+    creator: 'Stratum Systems',
+    publisher: 'Stratum Systems',
     formatDetection: {
         email: false,
         address: false,
@@ -39,24 +57,24 @@ export const metadata: Metadata = {
     openGraph: {
         type: 'website',
         locale: 'en_US',
-        url: 'https://lightspeed.tech',
-        title: 'Lightspeed | Infrastructure Solutions Kenya',
+        url: 'https://stratum.tech',
+        title: 'Stratum Systems | Infrastructure Solutions Kenya',
         description: 'Complete technical infrastructure solutions in Kenya. Network design, smart home automation, security systems.',
-        siteName: 'Lightspeed',
+        siteName: 'Stratum Systems',
         images: [
             {
                 url: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80',
                 width: 1200,
                 height: 630,
-                alt: 'Lightspeed Infrastructure Solutions',
+                alt: 'Stratum Systems Infrastructure Solutions',
             },
         ],
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Lightspeed | Infrastructure Solutions Kenya',
+        title: 'Stratum Systems | Infrastructure Solutions Kenya',
         description: 'Complete technical infrastructure solutions in Kenya. Network design, smart home automation, security systems.',
-        creator: '@lightspeed',
+        creator: '@stratum',
         images: ['https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80'],
     },
     icons: {
@@ -80,45 +98,7 @@ export const metadata: Metadata = {
     },
 }
 
-const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: 'Lightspeed',
-    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80',
-    '@id': 'https://lightspeed.tech',
-    url: 'https://lightspeed.tech',
-    telephone: '+254700000000',
-    address: {
-        '@type': 'PostalAddress',
-        addressCountry: 'KE'
-    },
-    geo: {
-        '@type': 'GeoCoordinates',
-        latitude: -1.2921,
-        longitude: 36.8219
-    },
-    openingHoursSpecification: {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"
-        ],
-        opens: '08:00',
-        closes: '17:00'
-    },
-    sameAs: [
-        'https://www.facebook.com/lightspeed',
-        'https://twitter.com/lightspeed',
-        'https://www.linkedin.com/company/lightspeed'
-    ],
-    areaServed: {
-        '@type': 'Country',
-        name: 'Kenya'
-    }
-}
+
 
 export const viewport: Viewport = {
     width: 'device-width',
@@ -135,13 +115,16 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en" suppressHydrationWarning>
-            <body className={cn("min-h-screen bg-background font-sans antialiased")}>
+        <html lang="en" suppressHydrationWarning className={cn(bodyFont.variable, displayFont.variable)}>
+            <body className={cn(
+                "min-h-screen font-body antialiased transition-colors bg-base text-primary", 
+            )}>
+                <ScrollProgress />
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"
                     enableSystem
-                    storageKey="lightspeed-theme"
+                    storageKey="stratum-theme"
                     disableTransitionOnChange
                 >
                     {/* 3. Accessibility: Skip Link */}
@@ -149,7 +132,7 @@ export default function RootLayout({
                         Skip to main content
                     </a>
 
-                    <Header />
+                    <Navbar />
                     <main id="main-content" className="min-h-screen">
                         <div className="pt-16">
                             {children}
@@ -159,10 +142,7 @@ export default function RootLayout({
                     <WhatsAppFloat />
                     {/* <ChatWidget /> */}
                     <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
-                    <script
-                        type="application/ld+json"
-                        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-                    />
+
                 </ThemeProvider>
             </body>
         </html>
