@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
 
 const WHATSAPP_NUMBER = '+254750285341' // Main contact number
-const WHATSAPP_MESSAGE = 'Hello! I\'d like to learn more about Lightspeed services.'
+const WHATSAPP_MESSAGE = 'Hello! I\'d like to learn more about Stratum services.'
 
 export function WhatsAppButton() {
     // Format phone number for WhatsApp (remove spaces and special chars except +)

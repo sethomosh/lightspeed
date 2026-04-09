@@ -115,7 +115,7 @@ export async function POST(req: Request) {
                         </div>
                     </div>
                     <div class="footer">
-                        Sent from lightspeed.tech contact form • IP: ${ip}
+                        Sent from stratum.tech contact form • IP: ${ip}
                     </div>
                 </div>
             </body>
@@ -123,7 +123,7 @@ export async function POST(req: Request) {
         `
 
         const data = await resend.emails.send({
-            from: "Lightspeed Contact <onboarding@resend.dev>", // Or your verified domain
+            from: "Stratum Contact <onboarding@resend.dev>", // Or your verified domain
             to: ["lightspeedtechnologies@gmail.com"],
             subject: `New Contact Form: ${service}`,
             html: emailContent,

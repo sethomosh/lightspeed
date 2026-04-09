@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 
 import { cn } from "@/lib/utils"
+import { services } from "@/lib/services-data"
 import {
     ArrowRight,
     Check,
@@ -61,6 +62,13 @@ import {
     Rocket,
     ShieldCheck
 } from "lucide-react"
+
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
 
 import TechnologyGrid from "@/components/services/TechnologyGrid"
 
@@ -125,6 +133,7 @@ const IconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 }
 
 interface ServicePageProps {
+    slug: string
     title: string
     description: string
     icon: string
@@ -152,6 +161,8 @@ interface ServicePageProps {
         description: string
         image: string
     }
+    bodyContent?: string
+    faqs?: Array<{ question: string; answer: string }>
 }
 
 // Icon helper
@@ -175,6 +186,7 @@ const getStepIcon = (step: number): React.ComponentType<{ className?: string }> 
 }
 
 export function ServicePageTemplate({
+    slug,
     title,
     description,
     icon,
@@ -186,6 +198,8 @@ export function ServicePageTemplate({
     heroImage,
     imagePosition = "center",
     caseStudy,
+    bodyContent,
+    faqs,
 }: ServicePageProps) {
     const HeroIcon = getIcon(icon)
 
@@ -246,6 +260,23 @@ export function ServicePageTemplate({
                                 </FadeIn>
                             ))}
                         </div>
+                    </div>
+                </section>
+            )}
+
+            {/* Editorial Body Content */}
+            {bodyContent && (
+                <section className="py-20 bg-background">
+                    <div className="container px-4 md:px-6">
+                        <FadeIn direction="up">
+                            <div className="max-w-4xl mx-auto">
+                                <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground leading-relaxed space-y-6">
+                                    {bodyContent.split('\n\n').map((paragraph, i) => (
+                                        <p key={i}>{paragraph}</p>
+                                    ))}
+                                </div>
+                            </div>
+                        </FadeIn>
                     </div>
                 </section>
             )}
@@ -387,6 +418,32 @@ export function ServicePageTemplate({
                 </div>
             </section>
 
+            {/* FAQs Section */}
+            {faqs && faqs.length > 0 && (
+                <section className="py-24 bg-base relative z-10 border-t border-border">
+                    <div className="container px-4 md:px-6 max-w-4xl mx-auto">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl md:text-5xl font-display font-bold tracking-tight text-text-primary">Service FAQs</h2>
+                            <p className="font-body text-text-muted mt-4 text-lg">Common questions about this service.</p>
+                        </div>
+                        <FadeIn direction="up">
+                            <Accordion type="single" collapsible className="w-full border-none">
+                                {faqs.map((faq, index) => (
+                                    <AccordionItem key={index} value={`item-${index}`} className="border-b border-border">
+                                        <AccordionTrigger className="text-left py-6 font-display text-lg font-semibold text-text-primary hover:text-accent transition-colors [&[data-state=open]>svg]:text-accent">
+                                            {faq.question}
+                                        </AccordionTrigger>
+                                        <AccordionContent className="font-body text-sm leading-relaxed text-text-muted pb-6">
+                                            {faq.answer}
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                ))}
+                            </Accordion>
+                        </FadeIn>
+                    </div>
+                </section>
+            )}
+
             {/* Technologies */}
             <section className="py-20 bg-background">
                 <div className="container px-4 md:px-6 text-center">
@@ -487,6 +544,39 @@ export function ServicePageTemplate({
                                     <Button variant="outline" className="w-full">Contact Sales</Button>
                                 </div>
                             </FadeIn>
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* Related Services */}
+            {services.filter(s => s.parentService === slug).length > 0 && (
+                <section className="py-20 bg-muted/20">
+                    <div className="container px-4 md:px-6">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Related Services</h2>
+                            <p className="text-muted-foreground mt-2">Explore specific solutions within this category.</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                            {services.filter(s => s.parentService === slug).map((related, index) => (
+                                <FadeIn key={related.slug} delay={index * 0.1}>
+                                    <div className="bg-background rounded-xl p-6 border border-border/50 hover:border-primary/50 hover:shadow-md transition-all h-full flex flex-col group relative">
+                                        <h3 className="text-lg font-bold mb-2">
+                                            <Link href={`/services/${related.slug}`} className="hover:text-primary transition-colors text-foreground">
+                                                {related.title}
+                                            </Link>
+                                        </h3>
+                                        <p className="text-sm text-muted-foreground flex-grow mb-4 leading-relaxed line-clamp-3">
+                                            {related.description}
+                                        </p>
+                                        <div className="mt-auto pt-4 border-t border-border/40">
+                                            <Link href={`/services/${related.slug}`} className="text-primary text-sm font-medium hover:underline inline-flex items-center">
+                                                Learn more <ArrowRight className="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </FadeIn>
+                            ))}
                         </div>
                     </div>
                 </section>

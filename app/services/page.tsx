@@ -4,7 +4,7 @@ import { ServicesGrid } from "@/components/home/ServicesGrid"
 import { CTASection } from "@/components/home/CTASection"
 
 export const metadata: Metadata = {
-    title: "Our Services | Lightspeed Technical Services",
+    title: "Our Services | Stratum Systems",
     description: "Explore our comprehensive range of technical services including Network Solutions, Smart Home Automation, Security, and more.",
 }
 

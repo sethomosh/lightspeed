@@ -19,8 +19,10 @@ const config = {
 		},
 		extend: {
 			fontFamily: {
-				sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],
-				mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
+				display: ['var(--font-display)', 'sans-serif'],
+				body: ['var(--font-body)', 'sans-serif'],
+				sans: ['var(--font-body)', 'sans-serif'],
+				mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "monospace"],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -44,8 +46,30 @@ const config = {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))'
 				},
+				// Brand Specific
+				base: 'var(--color-base)',
+				surface: 'var(--color-surface)',
+				'surface-raised': 'var(--color-surface-raised)',
+				'border-brand': 'var(--color-border)',
+				prussian: {
+					DEFAULT: 'var(--color-prussian)',
+					hover: 'var(--color-prussian-hover)',
+				},
+				signal: {
+					DEFAULT: 'var(--color-signal)',
+					light: 'var(--color-signal-light)',
+				},
+				blue: {
+					DEFAULT: 'var(--color-blue)',
+					light: 'var(--color-blue-light)',
+				},
+				'text-primary': 'var(--color-text-primary)',
+				'text-secondary': 'var(--color-text-secondary)',
+				'text-muted-brand': 'var(--color-text-muted)',
+				'text-subtle': 'var(--color-text-subtle)',
+				
 				accent: {
-					DEFAULT: 'hsl(var(--accent))',
+					DEFAULT: 'var(--color-accent)',
 					foreground: 'hsl(var(--accent-foreground))'
 				},
 				popover: {
@@ -56,13 +80,6 @@ const config = {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				chart: {
-					'1': 'hsl(var(--chart-1))',
-					'2': 'hsl(var(--chart-2))',
-					'3': 'hsl(var(--chart-3))',
-					'4': 'hsl(var(--chart-4))',
-					'5': 'hsl(var(--chart-5))'
-				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

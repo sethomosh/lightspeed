@@ -1,204 +1,145 @@
 "use client"
 
 import Link from "next/link"
-import { motion } from "framer-motion"
-import {
-    Network,
-    Home,
-    Shield,
-    Briefcase,
-    Monitor,
-    MessageSquare,
-    ArrowRight,
-    Map,
-    Hammer,
-    Server,
-    Wifi,
-    Activity,
-    Mic,
-    Lightbulb,
-    Thermometer,
-    Lock,
-    Tv,
-    Cpu,
-    Smartphone,
-    Camera,
-    Eye,
-    Database,
-    Bell,
-    Fingerprint,
-    Link as LinkIcon,
-    Watch,
-    Settings,
-    GitBranch,
-    Code,
-    Box,
-    Layers,
-    DollarSign,
-    Book,
-    Globe,
-    Webhook,
-    Cloud,
-    Compass,
-    TrendingUp,
-    Users,
-    Laptop,
-    Download,
-    HelpCircle,
-    Save,
-    Headphones,
-    Wrench,
-    HardDrive,
-    Key
-} from "lucide-react"
+import { motion, useReducedMotion } from "framer-motion"
+import { ArrowUpRight, Shield, Code2, Cpu } from "lucide-react"
 
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
-import { FadeIn } from "@/components/ui/fade-in"
-import { services } from "@/lib/services-data"
+import { cn } from "@/lib/utils"
+// We use the editorial content provided in the prompt
+const services = [
+    {
+        number: "01",
+        slug: "network-solutions",
+        title: "Network Solutions",
+        description: "Enterprise-grade network design and deployment for businesses and homes.",
+        editorial: "Stratum designs and deploys enterprise-grade networks using Ubiquiti, Cisco, and MikroTik hardware. From structured cabling to WiFi coverage.",
+        icon: "ubiquiti",
+    },
+    {
+        number: "02",
+        slug: "smart-home-automation",
+        title: "Smart Home Automation",
+        description: "Intelligent, connected environments built around how you actually live.",
+        editorial: "We transform homes with Home Assistant and best-in-class smart devices. Automated lighting, climate control, and voice integration.",
+        icon: "homeassistant",
+    },
+    {
+        number: "03",
+        slug: "security-systems",
+        title: "Security Systems",
+        description: "IP CCTV grids, NAS-based local recording, and cloud-connected surveillance.",
+        editorial: "Our security installations cover local and cloud-connected surveillance accessible from anywhere. Designed for homes and offices.",
+        icon: "shield", // Shield icon for security
+    },
+    {
+        number: "04",
+        slug: "devops-consulting",
+        title: "DevOps & Infrastructure",
+        description: "Modernising infrastructure with Docker, Kubernetes, and CI/CD pipelines.",
+        editorial: "We help startups scale with automation. Stop managing servers manually — let us build the automation layer your team needs.",
+        icon: "docker",
+    },
+    {
+        number: "05",
+        slug: "business-solutions",
+        title: "Software Solutions",
+        description: "Custom API integrations and business process automation.",
+        editorial: "Replace manual workflows with reliable, scalable systems. We build the software layer that makes your operations run faster.",
+        icon: "code", // Code icon
+    },
+    {
+        number: "06",
+        slug: "computer-solutions",
+        title: "Computing & Storage",
+        description: "Custom workstations, servers, and TrueNAS storage systems.",
+        editorial: "Spec'd and optimized for your exact workload. Every build is built for performance — no off-the-shelf compromises.",
+        icon: "cpu", // Cpu icon
+    },
+]
 
-const AccessIcon = {
-    Network,
-    Home,
-    Shield,
-    Briefcase,
-    Monitor,
-    MessageSquare,
-    Map,
-    Hammer,
-    Server,
-    Wifi,
-    Activity,
-    Mic,
-    Lightbulb,
-    Thermometer,
-    Lock,
-    Tv,
-    Cpu,
-    Smartphone,
-    Camera,
-    Eye,
-    Database,
-    Bell,
-    Fingerprint,
-    Link: LinkIcon,
-    Watch,
-    Settings,
-    GitBranch,
-    Code,
-    Box,
-    Layers,
-    DollarSign,
-    Book,
-    Globe,
-    Webhook,
-    Cloud,
-    Compass,
-    TrendingUp,
-    Users,
-    Laptop,
-    Download,
-    HelpCircle,
-    Save,
-    Headphones,
-    Tool: Wrench,
-    HardDrive,
-    Key
-}
+function ServiceCard({ service, index }: { service: any; index: number }) {
+    const prefersReducedMotion = useReducedMotion()
 
-const getIcon = (name: string) => {
-    // @ts-ignore
-    return AccessIcon[name] || Activity
-}
+    const getIcon = (iconName: string) => {
+        if (iconName === "shield") return <Shield size={20} className="text-prussian" />
+        if (iconName === "code") return <Code2 size={20} className="text-prussian" />
+        if (iconName === "cpu") return <Cpu size={20} className="text-prussian" />
+        return (
+            <img 
+                src={`https://cdn.simpleicons.org/${iconName}/1B3A6B`} 
+                alt="" 
+                className="w-5 h-5 object-contain"
+            />
+        )
+    }
 
-interface ServicesGridProps {
-    showHeading?: boolean
-}
-
-export function ServicesGrid({ showHeading = true }: ServicesGridProps) {
     return (
-        <section className="py-20 bg-background/50">
-            <div className="container px-4 md:px-6">
-                {showHeading && (
-                    <div className="flex flex-col items-center justify-center text-center space-y-4 mb-12">
-                        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                            Our Expertise
-                        </h2>
-                        <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                            Comprehensive technology solutions designed to scale with your ambition.
-                        </p>
+        <motion.div
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.4, delay: index * 0.08 }}
+            className="group"
+        >
+            <div className="relative bg-surface border border-brand rounded-2xl p-6 h-full transition-all duration-[250ms] ease-out hover:border-prussian/30 hover:shadow-[0_8px_32px_rgba(27,58,107,0.08)] hover:-translate-y-[3px] flex flex-col">
+                <div className="flex items-center justify-between">
+                    <span className="font-body text-[11px] font-600 text-prussian bg-blue-light px-2.5 py-0.5 rounded-full inline-block">
+                        {service.number}
+                    </span>
+                    <div className="w-11 h-11 bg-blue-light rounded-xl flex items-center justify-center shrink-0">
+                        {getIcon(service.icon)}
                     </div>
-                )}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {services.map((service, index) => {
-                        const Icon = getIcon(service.icon)
-                        return (
-                            <FadeIn key={service.title} delay={index * 0.1} className="h-full">
-                                <Link
-                                    href={`/services/${service.slug}`}
-                                    className="block h-full group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
-                                    tabIndex={0}
-                                >
-                                    <motion.div
-                                        whileHover={{ scale: 1.02, y: -8 }}
-                                        transition={{ duration: 0.3, ease: "easeOut" }}
-                                        className="h-full"
-                                    >
-                                        <Card
-                                            className="relative overflow-hidden border-border/50 bg-card transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/50 h-full flex flex-col cursor-pointer"
-                                        >
-                                            {/* Background gradient on hover */}
-                                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-                                            {/* Blue border glow on hover */}
-                                            <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
-
-                                            {/* Top-right arrow indicator - appears on hover */}
-                                            <motion.div
-                                                initial={{ opacity: 0, x: -10 }}
-                                                whileHover={{ opacity: 1, x: 0 }}
-                                                className="absolute top-4 right-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                            >
-                                                <ArrowRight className="h-5 w-5" />
-                                            </motion.div>
-
-                                            <CardHeader className="relative">
-                                                <div className="mb-4 w-fit rounded-lg bg-primary/10 p-3 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                                                    <Icon className="h-6 w-6" />
-                                                </div>
-                                                <CardTitle className="text-xl font-bold pr-8">
-                                                    {service.title}
-                                                </CardTitle>
-                                            </CardHeader>
-
-                                            <CardContent className="flex-grow relative">
-                                                <CardDescription className="text-base text-muted-foreground">
-                                                    {service.description}
-                                                </CardDescription>
-
-                                                {/* Status indicator for coming soon */}
-                                                {service.status === 'coming-soon' && (
-                                                    <div className="mt-4">
-                                                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                                                            Coming Soon
-                                                        </span>
-                                                    </div>
-                                                )}
-                                            </CardContent>
-                                        </Card>
-                                    </motion.div>
-                                </Link>
-                            </FadeIn>
-                        )
-                    })}
-
                 </div>
-            </div >
-        </section >
+
+                <h3 className="font-display font-600 text-[18px] text-primary mt-6">
+                    {service.title}
+                </h3>
+                
+                <p className="font-body text-[13px] text-text-muted-brand mt-2 leading-relaxed">
+                    {service.description}
+                </p>
+
+                <p className="font-body font-300 text-[13px] text-text-muted-brand/80 mt-3 leading-relaxed">
+                    {service.editorial}
+                </p>
+
+                <Link 
+                    href={`/services/${service.slug}`}
+                    className="mt-4 inline-block font-body text-[13px] font-500 text-prussian underline underline-offset-4 hover:text-blue transition-colors w-fit"
+                >
+                    Learn more
+                </Link>
+
+                <div className="mt-auto pt-4 flex justify-end">
+                    <ArrowUpRight 
+                        size={16} 
+                        className="text-prussian transition-all duration-250 opacity-0 transform translate-x-0 group-hover:opacity-100 group-hover:translate-x-1" 
+                    />
+                </div>
+            </div>
+        </motion.div>
+    )
+}
+
+export function ServicesGrid() {
+    return (
+        <section id="services" className="py-24 bg-base relative z-10">
+            <div className="container px-4 md:px-6 max-w-6xl mx-auto">
+                <div className="flex flex-col items-start gap-4 mb-16 max-w-2xl">
+                    <span className="text-label text-prussian">Solutions</span>
+                    <h2 className="font-display font-bold text-primary">What We Build</h2>
+                    <p className="font-body text-text-muted-brand">
+                        Six solution verticals. One team. No subcontracting.
+                    </p>
+                    <div className="w-10 h-0.5 bg-prussian mt-2 rounded-full" />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {services.map((service, index) => (
+                        <ServiceCard key={service.slug} service={service} index={index} />
+                    ))}
+                </div>
+            </div>
+        </section>
     )
 }

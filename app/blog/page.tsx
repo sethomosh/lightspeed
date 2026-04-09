@@ -2,7 +2,7 @@ import { getAllPosts } from "@/lib/blog"
 import { BlogList } from "@/components/blog/BlogList"
 
 export const metadata = {
-    title: 'Blog | Lightspeed',
+    title: 'Blog | Stratum',
     description: 'Insights, tutorials, and news about infrastructure, security, and smart home technology.',
 }
 

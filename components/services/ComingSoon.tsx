@@ -47,7 +47,7 @@ export function ComingSoon({ title, description }: ComingSoonProps) {
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="mb-8 p-6 bg-white/5 rounded-full border border-white/10 backdrop-blur-sm"
+                    className="mb-8 p-6 bg-border rounded-full border border-white/10 backdrop-blur-sm"
                 >
                     <Lock className="w-12 h-12 text-blue-500" />
                 </motion.div>
@@ -90,7 +90,7 @@ export function ComingSoon({ title, description }: ComingSoonProps) {
                         <Input
                             type="email"
                             placeholder="Enter your email for updates"
-                            className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 h-11"
+                            className="bg-border border-white/10 text-white placeholder:text-gray-500 h-11"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
@@ -106,7 +106,7 @@ export function ComingSoon({ title, description }: ComingSoonProps) {
             </main>
 
             <footer className="container relative z-10 py-6 text-center text-sm text-gray-600">
-                &copy; 2024 Lightspeed Technical Services
+                &copy; 2024 Stratum Systems
             </footer>
         </div>
     )

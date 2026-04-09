@@ -42,7 +42,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
                     />
                     <div className="absolute top-2 right-2">
-                        <Badge variant="secondary" className="backdrop-blur-md bg-white/50 text-black">
+                        <Badge variant="secondary" className="backdrop-blur-md bg-border0 text-black">
                             {project.category}
                         </Badge>
                     </div>

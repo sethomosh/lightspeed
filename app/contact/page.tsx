@@ -4,8 +4,8 @@ import { Button } from '@/components/ui/button'
 import { ContactForm } from '@/components/contact/ContactForm'
 
 export const metadata: Metadata = {
-    title: 'Contact Us | Lightspeed',
-    description: 'Get in touch with Lightspeed for infrastructure, security, and business solutions. We are ready to help you scale.',
+    title: 'Contact Us | Stratum',
+    description: 'Get in touch with Stratum for infrastructure, security, and business solutions. We are ready to help you scale.',
 }
 
 export default function ContactPage() {
@@ -69,7 +69,7 @@ export default function ContactPage() {
                             </a>
 
                             <a
-                                href="https://wa.me/254115217699?text=Hi!%20I%27m%20interested%20in%20Lightspeed%20services.%20I%27d%20like%20to%20discuss:"
+                                href="https://wa.me/254115217699?text=Hi!%20I%27m%20interested%20in%20Stratum%20services.%20I%27d%20like%20to%20discuss:"
                                 className="flex items-center gap-4 p-4 rounded-xl border bg-card hover:bg-muted/50 transition-colors group"
                                 target="_blank"
                                 rel="noopener noreferrer"

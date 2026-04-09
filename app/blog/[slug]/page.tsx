@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     const post = getPostBySlug(params.slug)
     if (!post) return { title: "Post Not Found" }
 
-    const ogImage = post.image || 'https://lightspeed.tech/og.jpg'
+    const ogImage = post.image || 'https://stratum.tech/og.jpg'
 
     return {
         title: post.title,
@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
             type: 'article',
             publishedTime: post.date,
             authors: [post.author],
-            url: `https://lightspeed.tech/blog/${params.slug}`,
+            url: `https://stratum.tech/blog/${params.slug}`,
             images: [
                 {
                     url: ogImage,
@@ -99,15 +99,15 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         },
         publisher: {
             '@type': 'Organization',
-            name: 'Lightspeed',
+            name: 'Stratum',
             logo: {
                 '@type': 'ImageObject',
-                url: 'https://lightspeed.tech/logo.png'
+                url: 'https://stratum.tech/logo.png'
             }
         },
         mainEntityOfPage: {
             '@type': 'WebPage',
-            '@id': `https://lightspeed.tech/blog/${params.slug}`
+            '@id': `https://stratum.tech/blog/${params.slug}`
         }
     }
 

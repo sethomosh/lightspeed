@@ -37,11 +37,8 @@ export function FeaturedProjects() {
                 <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end mb-12">
                     <div className="space-y-4">
                         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                            Featured Works
+                            Selected Projects
                         </h2>
-                        <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-                            Delivering mission-critical solutions for industry leaders.
-                        </p>
                     </div>
                     <Button variant="outline" asChild>
                         <Link href="/portfolio">

@@ -1,23 +1,15 @@
 import { MetadataRoute } from 'next'
+import { services } from '@/lib/services-data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://lightspeednet.vercel.app'
 
     const routes = [
-        { url: '', priority: 1.0, changefreq: 'weekly' as const },
-        { url: '/about', priority: 0.8, changefreq: 'weekly' as const },
-        { url: '/contact', priority: 0.8, changefreq: 'weekly' as const },
-        { url: '/portfolio', priority: 0.8, changefreq: 'weekly' as const },
-        { url: '/blog', priority: 0.8, changefreq: 'weekly' as const },
-    ]
-
-    const services = [
-        'network-solutions',
-        'smart-home-automation',
-        'security-systems',
-        'devops-consulting',
-        'business-solutions',
-        'computer-solutions',
+        { url: '', priority: 1.0, changefreq: 'monthly' as const },
+        { url: '/about', priority: 0.8, changefreq: 'monthly' as const },
+        { url: '/contact', priority: 0.8, changefreq: 'monthly' as const },
+        { url: '/portfolio', priority: 0.8, changefreq: 'monthly' as const },
+        { url: '/blog', priority: 0.8, changefreq: 'monthly' as const },
     ]
 
     return [
@@ -28,10 +20,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: route.priority,
         })),
         ...services.map(service => ({
-            url: `${baseUrl}/services/${service}`,
+            url: `${baseUrl}/services/${service.slug}`,
             lastModified: new Date(),
             changeFrequency: 'monthly' as const,
-            priority: 0.9,
+            priority: service.parentService ? 0.6 : 0.8,
         })),
     ]
 }

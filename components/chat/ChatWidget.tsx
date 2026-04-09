@@ -37,7 +37,7 @@ export default function ChatWidget() {
 
     // Load messages from local storage on mount
     useEffect(() => {
-        const savedMessages = localStorage.getItem("lightspeed-chat-messages")
+        const savedMessages = localStorage.getItem("stratum-chat-messages")
         if (savedMessages) {
             try {
                 const parsed = JSON.parse(savedMessages)
@@ -70,7 +70,7 @@ export default function ChatWidget() {
     // Save messages to local storage
     useEffect(() => {
         if (messages.length > 0) {
-            localStorage.setItem("lightspeed-chat-messages", JSON.stringify(messages))
+            localStorage.setItem("stratum-chat-messages", JSON.stringify(messages))
         }
     }, [messages])
 
@@ -127,7 +127,7 @@ export default function ChatWidget() {
             
             // Extract error message if available
             const errorMessage = error?.message || 
-                "Sorry, I'm having trouble connecting right now. Please try again later or email us at hello@lightspeed.tech."
+                "Sorry, I'm having trouble connecting right now. Please try again later or email us at hello@stratum.tech."
             
             const errorResponse: Message = {
                 id: (Date.now() + 1).toString(),
@@ -168,7 +168,7 @@ export default function ChatWidget() {
                                     <Bot className="h-6 w-6" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold">Lightspeed Assistant</h3>
+                                    <h3 className="font-bold">Stratum Assistant</h3>
                                     <p className="text-xs text-primary-foreground/80 flex items-center gap-1">
                                         <span className="w-2 h-2 bg-green-400 rounded-full inline-block animate-pulse" />
                                         Typically replies instantly

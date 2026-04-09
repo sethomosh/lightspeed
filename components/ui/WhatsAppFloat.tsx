@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 
 const PHONE_E164 = '254115217699'
 const DISPLAY_NUMBER = '0115217699'
-const DEFAULT_MESSAGE = "Hi! I'm interested in Lightspeed services."
+const DEFAULT_MESSAGE = "Hi! I'm interested in Stratum services."
 
 export interface WhatsAppFloatProps {
   message?: string

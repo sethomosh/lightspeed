@@ -23,7 +23,7 @@ function checkRateLimit(ip: string): boolean {
 }
 
 const SYSTEM_PROMPT = `
-You are a helpful assistant for Lightspeed, a technical services company in Kenya.
+You are a helpful assistant for Stratum, a technical services company in Kenya.
 
 Services offered:
 1. Network Infrastructure - design, installation, optimization
@@ -86,7 +86,7 @@ export async function POST(req: Request) {
         if (!apiKey) {
             console.error("[CHAT_ERROR] HUGGINGFACE_API_KEY is missing from environment variables")
             return NextResponse.json(
-                { message: "Chat service is currently unavailable. Please contact us at hello@lightspeed.tech." },
+                { message: "Chat service is currently unavailable. Please contact us at hello@stratum.tech." },
                 { status: 500 }
             )
         }
@@ -97,7 +97,7 @@ export async function POST(req: Request) {
         } catch (initError: any) {
             console.error("[CHAT_ERROR] Failed to initialize HfInference:", initError)
             return NextResponse.json(
-                { message: "Chat service initialization failed. Please contact us at hello@lightspeed.tech." },
+                { message: "Chat service initialization failed. Please contact us at hello@stratum.tech." },
                 { status: 500 }
             )
         }
@@ -275,7 +275,7 @@ export async function POST(req: Request) {
             errorMessage?.includes("401")) {
             console.error("[CHAT_ERROR] Authentication failed - check HUGGINGFACE_API_KEY")
             return NextResponse.json(
-                { message: "Chat service configuration error. Please contact us at hello@lightspeed.tech." },
+                { message: "Chat service configuration error. Please contact us at hello@stratum.tech." },
                 { status: 500 }
             )
         }
@@ -283,7 +283,7 @@ export async function POST(req: Request) {
         // Check for model not found or unavailable
         if (errorMessage?.includes("Model") && errorMessage?.includes("not found")) {
             return NextResponse.json(
-                { message: "The chat model is currently unavailable. Please try again later or contact us at hello@lightspeed.tech." },
+                { message: "The chat model is currently unavailable. Please try again later or contact us at hello@stratum.tech." },
                 { status: 503 }
             )
         }
@@ -307,7 +307,7 @@ export async function POST(req: Request) {
         // For any other API error, return a user-friendly message instead of rethrowing
         console.error("[CHAT_ERROR] Unhandled Hugging Face API error - returning generic error")
         return NextResponse.json(
-            { message: "I'm having trouble processing your request. The AI service may be temporarily unavailable. Please try again in a moment or contact us at hello@lightspeed.tech." },
+            { message: "I'm having trouble processing your request. The AI service may be temporarily unavailable. Please try again in a moment or contact us at hello@stratum.tech." },
             { status: 503 }
         )
     }

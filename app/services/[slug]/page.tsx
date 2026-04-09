@@ -31,39 +31,39 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     // SEO-optimized titles and descriptions per service
     const seoData: Record<string, { title: string; description: string; keywords: string }> = {
         'network-solutions': {
-            title: 'Network Installation & WiFi Solutions in Kenya | Lightspeed',
+            title: 'Network Solutions | Stratum Systems',
             description: 'Professional network infrastructure services. WiFi installation, network optimization, enterprise networking, and connectivity solutions. Free consultation.',
             keywords: 'network installation Kenya, WiFi setup Kenya, enterprise networking, internet connectivity, network optimization'
         },
         'smart-home-automation': {
-            title: 'Smart Home Automation Services in Kenya | Lightspeed',
+            title: 'Smart Home Automation | Stratum Systems',
             description: 'Transform your home with smart automation. Lighting, climate control, security integration, and home servers. Serving clients across Kenya.',
             keywords: 'smart home Kenya, home automation Kenya, smart lighting, home assistant, automated home'
         },
         'security-systems': {
-            title: 'CCTV & Security System Installation Kenya | Lightspeed',
+            title: 'Security System Installation | Stratum Systems',
             description: 'Professional security systems installation. CCTV cameras, alarm systems, access control. Protect your home or business.',
             keywords: 'CCTV installation Kenya, security cameras Kenya, alarm systems, access control, surveillance'
         },
         'devops-consulting': {
-            title: 'DevOps Consulting Services Kenya | Cloud Infrastructure | Lightspeed',
+            title: 'DevOps Consulting | Stratum Systems',
             description: 'Professional DevOps consulting for startups and businesses. Infrastructure automation, CI/CD pipelines, Kubernetes, Docker. Remote services available.',
             keywords: 'DevOps consultant Kenya, cloud infrastructure, Kubernetes, Docker, CI/CD'
         },
         'business-solutions': {
-            title: 'Custom Web Development & CTO Services Kenya | Lightspeed',
+            title: 'Business IT Solutions | Stratum Systems',
             description: 'Professional web application development and startup CTO services. Custom software solutions for businesses in Kenya. Free consultation.',
             keywords: 'web development Kenya, custom software, CTO services, business automation'
         },
         'computer-solutions': {
-            title: 'Server Setup & Computer Services Kenya | NAS Solutions | Lightspeed',
+            title: 'Computer Solutions | Stratum Systems',
             description: 'Professional computer and server services. Workstation setup, NAS solutions, server building, IT support across Kenya.',
             keywords: 'server setup Kenya, NAS solutions Kenya, computer services, workstation setup, IT support'
         }
     }
 
     const seo = seoData[params.slug] || {
-        title: `${service.title} | Lightspeed`,
+        title: `${service.title} | Stratum Systems`,
         description: service.description,
         keywords: ''
     }
@@ -105,9 +105,10 @@ export default function ServicePage({ params }: PageProps) {
         '@type': 'Service',
         name: service.title,
         description: service.description,
+        url: `https://lightspeednet.vercel.app/services/${params.slug}`,
         provider: {
             '@type': 'LocalBusiness',
-            name: 'Lightspeed'
+            name: 'Stratum Systems'
         },
         areaServed: {
             '@type': 'Country',
