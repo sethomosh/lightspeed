@@ -9,13 +9,16 @@ import { Footer } from '@/components/layout/footer'
 import { ThemeProvider } from '@/components/theme/ThemeProvider'
 import WhatsAppFloat from '@/components/ui/WhatsAppFloat'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
-import { Urbanist, Plus_Jakarta_Sans } from 'next/font/google'
+import localFont from 'next/font/local'
+import { Plus_Jakarta_Sans } from 'next/font/google'
 
-// TODO: Replace Urbanist with ALT Gumbo (next/font/local) once Seth
-// purchases the license from alt-tf.com and places .woff2 files in /public/fonts/
-const displayFont = Urbanist({
-    subsets: ['latin'],
-    weight: ['300', '400', '500', '600', '700', '800'],
+const displayFont = localFont({
+    src: [
+        { path: '../public/fonts/ALTGumbo-Regular.woff2', weight: '400' },
+        { path: '../public/fonts/ALTGumbo-Medium.woff2', weight: '500' },
+        { path: '../public/fonts/ALTGumbo-Semibold.woff2', weight: '600' },
+        { path: '../public/fonts/ALTGumbo-Bold.woff2', weight: '700' },
+    ],
     variable: '--font-display',
     display: 'swap',
 })
