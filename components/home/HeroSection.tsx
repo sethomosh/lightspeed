@@ -4,6 +4,9 @@ import * as React from "react"
 import Link from "next/link"
 import { motion, useReducedMotion } from "framer-motion"
 import { ChevronDown } from "lucide-react"
+import { Aurora } from "@/components/ui/reactbits/Aurora"
+import { GradientText } from "@/components/ui/reactbits/GradientText"
+import { Marquee } from "@/components/ui/reactbits/Marquee"
 
 const techLogos = [
     { name: "Ubiquiti", slug: "ubiquiti" },
@@ -12,6 +15,8 @@ const techLogos = [
     { name: "Home Assistant", slug: "homeassistant" },
     { name: "pfSense", slug: "pfsense" },
     { name: "Docker", slug: "docker" },
+    { name: "Kubernetes", slug: "kubernetes" },
+    { name: "Terraform", slug: "terraform" },
 ]
 
 export function HeroSection() {
@@ -39,15 +44,14 @@ export function HeroSection() {
 
     return (
         <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-base px-6">
-            {/* Dot Grid Background */}
-            <div 
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                    backgroundImage: `radial-gradient(circle, #D0CFCA 1px, transparent 1px)`,
-                    backgroundSize: '28px 28px',
-                    maskImage: `linear-gradient(to bottom, black 40%, transparent 100%)`,
-                    WebkitMaskImage: `linear-gradient(to bottom, black 40%, transparent 100%)`,
-                }}
+            {/* Aurora Background Layer */}
+            <Aurora 
+                colorStops={["#EBF1FA", "#F7F7F5", "#FDF0EB"]} 
+                className="dark:hidden"
+            />
+            <Aurora 
+                colorStops={["#1A2535", "#111110", "#2A1510"]} 
+                className="hidden dark:block opacity-60"
             />
 
             <motion.div 
@@ -62,7 +66,7 @@ export function HeroSection() {
                         hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 16 },
                         visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
                     }}
-                    className="bg-blue-light text-prussian text-label px-3 py-1 rounded-full inline-block mb-6"
+                    className="bg-signal-light text-signal text-label px-3 py-1 rounded-full inline-block mb-6"
                 >
                     Infrastructure Solutions
                 </motion.div>
@@ -75,7 +79,7 @@ export function HeroSection() {
                     }}
                     className="font-display font-bold text-[32px] md:text-[40px] lg:text-[56px] leading-[1.0] tracking-[-0.03em] text-primary max-w-4xl"
                 >
-                    Infrastructure built to <span className="text-prussian">last.</span> Systems that actually <span className="text-prussian">works.</span>
+                    Infrastructure built to <GradientText>last.</GradientText> Systems that actually <GradientText>works.</GradientText>
                 </motion.h1>
 
                 {/* Subtitle */}
@@ -99,7 +103,7 @@ export function HeroSection() {
                 >
                     <Link 
                         href="/contact"
-                        className="bg-prussian text-white font-body text-[15px] font-500 px-7 py-3 rounded-full transition-all duration-200 hover:bg-prussian-hover hover:scale-[1.02]"
+                        className="bg-prussian text-white font-body text-[15px] font-500 px-7 py-3 rounded-full transition-all duration-250 ease-out hover:bg-signal hover:scale-[1.02]"
                     >
                         Start a Project
                     </Link>
@@ -122,11 +126,11 @@ export function HeroSection() {
                     <p className="text-text-subtle text-label mb-6">
                         Technologies we work with
                     </p>
-                    <div className="flex flex-wrap items-center gap-x-10 gap-y-6">
+                    <Marquee speed={25} className="-mx-4 px-4 pb-4">
                         {techLogos.map((logo) => (
                             <div
                                 key={logo.name}
-                                className="h-[32px] transition-opacity duration-200 opacity-30 hover:opacity-80"
+                                className="h-[32px] mx-8 transition-opacity duration-200 opacity-30 hover:opacity-80"
                             >
                                 <img
                                     src={`https://cdn.simpleicons.org/${logo.slug}/1B3A6B`}
@@ -135,7 +139,7 @@ export function HeroSection() {
                                 />
                             </div>
                         ))}
-                    </div>
+                    </Marquee>
                 </motion.div>
             </motion.div>
 

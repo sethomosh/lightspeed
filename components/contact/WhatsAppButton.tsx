@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
 
-const WHATSAPP_NUMBER = '+254750285341' // Main contact number
+const WHATSAPP_NUMBER = '+254115217699' // Main contact number
 const WHATSAPP_MESSAGE = 'Hello! I\'d like to learn more about Stratum services.'
 
 export function WhatsAppButton() {

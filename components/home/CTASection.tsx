@@ -1,10 +1,13 @@
 import Link from "next/link"
 import { MapPin } from "lucide-react"
 
+import { RaysBackground } from "@/components/ui/SectionBackgrounds"
+
 export function CTASection() {
     return (
         <section className="bg-prussian text-white py-24 relative z-10 overflow-hidden">
-            <div className="container px-4 md:px-6 max-w-6xl mx-auto">
+            <RaysBackground />
+            <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Left: copy + buttons */}
                     <div className="space-y-8">

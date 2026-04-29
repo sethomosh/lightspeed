@@ -1,4 +1,5 @@
 import { Zap, MapPin, CheckCircle, DollarSign } from "lucide-react"
+import { SplitText } from "@/components/ui/reactbits/SplitText"
 
 const cards = [
     {
@@ -23,12 +24,17 @@ const cards = [
     },
 ]
 
+import { VignetteBackground } from "@/components/ui/SectionBackgrounds"
+
 export function WhyChooseSection() {
     return (
-        <section className="py-24 bg-base relative z-10">
-            <div className="container px-4 md:px-6 max-w-6xl mx-auto">
+        <section className="py-24 bg-surface-raised relative z-10 overflow-hidden border-y border-brand/50">
+            <VignetteBackground />
+            <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
                 <div className="flex flex-col items-start gap-4 mb-16">
-                    <h2 className="font-display font-bold text-primary">How We Work</h2>
+                    <h2 className="font-display font-bold text-primary">
+                        <SplitText text="How We Work" delay={0.2} />
+                    </h2>
                     <p className="font-body text-text-muted-brand">
                         The same principles on every project, regardless of size.
                     </p>

@@ -42,7 +42,7 @@ export default function ContactPage() {
 
                         <div className="space-y-6">
                             <a
-                                href="mailto:lightspeedtechnologies@gmail.com"
+                                href="mailto:stratumsystemsandsolutions@gmail.com"
                                 className="flex items-center gap-4 p-4 rounded-xl border bg-card hover:bg-muted/50 transition-colors group"
                             >
                                 <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -50,12 +50,12 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <p className="font-medium">Email Us</p>
-                                    <p className="text-sm text-muted-foreground">lightspeedtechnologies@gmail.com</p>
+                                    <p className="text-sm text-muted-foreground">stratumsystemsandsolutions@gmail.com</p>
                                 </div>
                             </a>
 
                             <a
-                                href="tel:+254750285341"
+                                href="tel:+254115217699"
                                 className="flex items-center gap-4 p-4 rounded-xl border bg-card hover:bg-muted/50 transition-colors group"
                             >
                                 <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -63,8 +63,8 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <p className="font-medium">Call Us</p>
-                                    <p className="text-sm text-muted-foreground">+254 750 285 341</p>
                                     <p className="text-sm text-muted-foreground">+254 115 217 699</p>
+                                    <p className="text-sm text-muted-foreground">+254 750 285 341</p>
                                 </div>
                             </a>
 

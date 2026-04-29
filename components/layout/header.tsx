@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { X, Menu } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, Variants } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -45,7 +45,7 @@ export function Header() {
         return () => { document.body.style.overflow = "unset" }
     }, [mobileOpen])
 
-    const mobileMenuVariants = {
+    const mobileMenuVariants: Variants = {
         closed: { x: "100%", transition: { type: "tween", duration: 0.3 } },
         open: { 
             x: 0, 
@@ -58,7 +58,7 @@ export function Header() {
         }
     }
 
-    const mobileLinkVariants = {
+    const mobileLinkVariants: Variants = {
         closed: { x: 20, opacity: 0 },
         open: { x: 0, opacity: 1, transition: { type: "spring", bounce: 0 } }
     }

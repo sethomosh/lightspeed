@@ -9,14 +9,30 @@ export function Footer() {
             <div className="container px-4 md:px-6">
                 <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
                     {/* Column 1: Info */}
-                    <div className="flex flex-col">
-                        <Link href="/" className="flex items-center">
-                            <span className="font-display font-bold text-[18px] tracking-[0.05em] text-prussian uppercase">
-                                STRATUM
-                            </span>
-                        </Link>
-                        <p className="text-text-muted-brand font-body text-[14px] mt-2 leading-relaxed">
-                            Infrastructure built to last. Systems that don't need babysitting.
+                        <div className="flex flex-col">
+                            <div className="mb-4">
+                                <Link href="/" className="inline-flex items-center gap-3 group">
+                                    {/* Inline mark */}
+                                    <svg
+                                        width="36" height="33"
+                                        viewBox="0 0 36 33"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        aria-hidden="true"
+                                        className="shrink-0"
+                                    >
+                                        <rect x="0" y="0" width="36" height="7" rx="3.5" fill="#1B3A6B" className="dark:fill-white"/>
+                                        <rect x="0" y="13" width="28" height="7" rx="3.5" fill="#1B3A6B" className="dark:fill-white"/>
+                                        <rect x="0" y="26" width="20" height="7" rx="3.5" fill="#E8420A"/>
+                                    </svg>
+                                    {/* Wordmark */}
+                                    <span className="font-display font-bold text-[20px] tracking-[-0.02em] text-prussian dark:text-[#F0F0EE]" style={{ fontVariationSettings: "'wdth' 125" }}>
+                                        stratum
+                                    </span>
+                                </Link>
+                            </div>
+                        <p className="text-text-muted-brand font-body text-[14px] leading-relaxed">
+                            Systems that don&apos;t need babysitting.
                         </p>
                         <div className="flex items-center gap-2 font-body text-[13px] font-500 text-prussian mt-4">
                             <MapPin className="h-[14px] w-[14px] text-prussian" />
@@ -92,16 +108,21 @@ export function Footer() {
                         <div className="flex flex-col gap-3 font-body text-[14px] text-text-secondary">
                             <p>
                                 <span className="block font-medium text-prussian mb-1">Email</span>
-                                <a href="mailto:hello@stratum.tech" className="hover:text-prussian transition-colors">
-                                    hello@stratum.tech
+                                <a href="mailto:stratumsystemsandsolutions@gmail.com" className="hover:text-prussian transition-colors">
+                                    stratumsystemsandsolutions@gmail.com
                                 </a>
                             </p>
-                            <p>
+                            <div>
                                 <span className="block font-medium text-prussian mb-1">WhatsApp</span>
-                                <a href="https://wa.me/254115217699" className="hover:text-prussian transition-colors">
-                                    +254 115 217 699
-                                </a>
-                            </p>
+                                <div className="flex flex-col gap-1">
+                                    <a href="https://wa.me/254115217699" className="hover:text-prussian transition-colors">
+                                        +254 115 217 699 (Primary)
+                                    </a>
+                                    <a href="https://wa.me/254750285341" className="hover:text-prussian transition-colors">
+                                        +254 750 285 341 (Secondary)
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from "react"
 import { animate, motion, useInView, useReducedMotion } from "framer-motion"
+import { StatsBackground } from "@/components/ui/SectionBackgrounds"
 
 import { cn } from "@/lib/utils"
 
@@ -57,7 +58,10 @@ function StatItem({ value, numericValue, prefix = "", suffix, label, index }: St
             // - No bottom border
             "md:border-b-0 md:border-r md:last:border-r-0"
         )}>
-            <div className="font-display font-bold text-[36px] md:text-[42px] text-prussian leading-none">
+            <div className={cn(
+                "font-display font-bold text-[36px] md:text-[42px] leading-none",
+                index % 2 === 0 ? "text-prussian" : "text-signal"
+            )}>
                 {numericValue > 0 ? (
                     <Counter numericValue={numericValue} prefix={prefix} suffix={suffix} />
                 ) : (
@@ -71,6 +75,7 @@ function StatItem({ value, numericValue, prefix = "", suffix, label, index }: St
     )
 }
 
+
 export function StatsBar() {
     const stats = [
         { value: "50+", numericValue: 50, suffix: "+", label: "Projects Delivered" },
@@ -81,7 +86,8 @@ export function StatsBar() {
 
     return (
         <section className="relative w-full bg-surface border-y border-brand z-10 overflow-hidden">
-            <div className="max-w-6xl mx-auto">
+            <StatsBackground />
+            <div className="max-w-6xl mx-auto relative z-10">
                 <div className="grid grid-cols-2 md:grid-cols-4">
                     {stats.map((stat, index) => (
                         <StatItem key={index} {...stat} index={index} />

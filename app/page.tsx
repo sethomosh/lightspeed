@@ -5,6 +5,7 @@ import { StatsBar } from "@/components/home/StatsBar"
 import { ServicesGrid } from "@/components/home/ServicesGrid"
 import { WhyChooseSection } from "@/components/home/WhyChooseSection"
 import { CTASection } from "@/components/home/CTASection"
+import { GoogleReviewsSection } from "@/components/home/GoogleReviewsSection"
 import {
     Accordion,
     AccordionContent,
@@ -37,6 +38,8 @@ export const metadata: Metadata = {
     },
 }
 
+import { PlasmaBackground } from "@/components/ui/SectionBackgrounds"
+
 export default function Home() {
     const jsonLd = {
         "@context": "https://schema.org",
@@ -44,8 +47,8 @@ export default function Home() {
         "name": "Stratum Systems",
         "description": "End-to-end infrastructure and IT solutions provider. Network design, smart home automation, security systems, DevOps consulting, and computer solutions for businesses and homes across Kenya.",
         "url": "https://lightspeednet.vercel.app",
-        "telephone": "+254750285341",
-        "email": "lightspeedtechnologies@gmail.com", /* TODO: Seth to update to stratum email */
+        "telephone": "+254115217699",
+        "email": "stratumsystemsandsolutions@gmail.com",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Nairobi",
@@ -64,10 +67,12 @@ export default function Home() {
             <HeroSection />
             <StatsBar />
             <ServicesGrid />
+            <WhyChooseSection />
 
             {/* Location Section — 60/40 desktop split */}
-            <section className="py-16 bg-surface-raised border-y border-brand relative z-10">
-                <div className="container px-4 md:px-6 max-w-6xl mx-auto">
+            <section className="py-24 bg-surface border-y border-brand relative z-10 overflow-hidden">
+                <PlasmaBackground />
+                <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-12 lg:gap-20 items-center">
                         {/* Left: 60% */}
                         <div className="space-y-6">
@@ -94,7 +99,8 @@ export default function Home() {
                 </div>
             </section>
 
-            <WhyChooseSection />
+            <CTASection />
+            <GoogleReviewsSection />
 
             {/* FAQ Section */}
             <section className="py-16 bg-surface-raised border-t border-brand relative z-10">
@@ -151,8 +157,6 @@ export default function Home() {
                     </Accordion>
                 </div>
             </section>
-
-            <CTASection />
         </>
     )
 }

@@ -9,14 +9,12 @@ import { Footer } from '@/components/layout/footer'
 import { ThemeProvider } from '@/components/theme/ThemeProvider'
 import WhatsAppFloat from '@/components/ui/WhatsAppFloat'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
-import { Urbanist, Plus_Jakarta_Sans } from 'next/font/google'
+import { CustomCursor } from '@/components/ui/reactbits/CustomCursor'
+import { Anybody, Plus_Jakarta_Sans } from 'next/font/google'
 
-// TODO: Replace Urbanist with ALT Gumbo (next/font/local) once the .woff2 files
-// are placed in /public/fonts/ — required files:
-//   ALTGumbo-Regular.woff2, ALTGumbo-Medium.woff2, ALTGumbo-Semibold.woff2, ALTGumbo-Bold.woff2
-const displayFont = Urbanist({
+const displayFont = Anybody({
     subsets: ['latin'],
-    weight: ['300', '400', '500', '600', '700', '800'],
+    weight: ['400', '500', '600', '700', '800'],
     variable: '--font-display',
     display: 'swap',
 })
@@ -64,24 +62,24 @@ export const metadata: Metadata = {
         siteName: 'Stratum Systems',
         images: [
             {
-                url: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80',
-                width: 1200,
-                height: 630,
-                alt: 'Stratum Systems Infrastructure Solutions',
+                url: '/logo/stratum-light.svg',
+                width: 200,
+                height: 33,
+                alt: 'stratum — infrastructure built to last',
             },
         ],
     },
     twitter: {
-        card: 'summary_large_image',
+        card: 'summary',
         title: 'Stratum Systems | Infrastructure Solutions Kenya',
         description: 'Complete technical infrastructure solutions in Kenya. Network design, smart home automation, security systems.',
         creator: '@stratum',
-        images: ['https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80'],
+        images: ['/logo/stratum-light.svg'],
     },
     icons: {
-        icon: '/favicon.ico',
-        shortcut: '/favicon.ico',
-        apple: '/apple-touch-icon.png',
+        icon: '/logo/stratum-favicon.svg',
+        shortcut: '/logo/stratum-favicon.svg',
+        apple: '/logo/stratum-favicon.svg',
     },
     robots: {
         index: true,
@@ -120,6 +118,7 @@ export default function RootLayout({
             <body className={cn(
                 "min-h-screen font-body antialiased transition-colors bg-base text-primary", 
             )}>
+                <CustomCursor />
                 <ScrollProgress />
                 <ThemeProvider
                     attribute="class"

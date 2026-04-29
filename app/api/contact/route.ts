@@ -124,7 +124,7 @@ export async function POST(req: Request) {
 
         const data = await resend.emails.send({
             from: "Stratum Contact <onboarding@resend.dev>", // Or your verified domain
-            to: ["lightspeedtechnologies@gmail.com"],
+            to: ["stratumsystemsandsolutions@gmail.com"],
             subject: `New Contact Form: ${service}`,
             html: emailContent,
             replyTo: email, // Allow direct reply

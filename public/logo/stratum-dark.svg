@@ -1,0 +1,31 @@
+<!--
+  STRATUM SYSTEMS — LOGO USAGE
+  ---
+  Full lockup: use stratum-light.svg or stratum-dark.svg
+  Mark only: use stratum-mark-light.svg or stratum-mark-dark.svg
+  Favicon: use stratum-favicon.svg
+
+  DO NOT:
+  - Alter the proportions of any bar
+  - Change bar 3 from signal orange (#E8420A)
+  - Add text effects, shadows, or outlines
+  - Rotate or skew the mark
+  - Use on backgrounds that reduce contrast below 4.5:1
+
+  MINIMUM SIZES:
+  - Full lockup: 120px wide minimum
+  - Mark only: 20px wide minimum
+  - Favicon version: any size (square format)
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 33" fill="none">
+  <!-- Mark: 3 bars, left-aligned, pill ends -->
+  <rect x="0" y="0" width="36" height="7" rx="3.5" fill="#FFFFFF"/>
+  <rect x="0" y="13" width="28" height="7" rx="3.5" fill="#FFFFFF"/>
+  <rect x="0" y="26" width="20" height="7" rx="3.5" fill="#E8420A"/>
+  <!-- Wordmark: Anybody 700, lowercase -->
+  <text x="50" y="24"
+    font-family="'Anybody', system-ui, sans-serif"
+    font-size="22" font-weight="700"
+    letter-spacing="-0.44"
+    fill="#F0F0EE">stratum</text>
+</svg>
